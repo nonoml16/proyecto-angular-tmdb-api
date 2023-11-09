@@ -8,6 +8,11 @@ import { ActorListComponent } from './components/actor-list/actor-list.component
 import { PageHomeComponent } from './ui/page-home/page-home.component';
 import { PageNotFoundComponent } from './ui/page-not-found/page-not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { ActorItemComponent } from './components/actor-item/actor-item.component';
+import { MovieItemComponent } from './components/movie-item/movie-item.component';
+import { TvShowItemComponent } from './components/tv-show-item/tv-show-item.component';
+import { PageListComponent } from './ui/page-list/page-list.component';
 
 @NgModule({
   declarations: [
@@ -15,12 +20,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MovieListComponent,
     ActorListComponent,
     PageHomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ActorItemComponent,
+    MovieItemComponent,
+    TvShowItemComponent,
+    PageListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
