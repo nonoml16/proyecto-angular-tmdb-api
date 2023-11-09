@@ -1,0 +1,55 @@
+nav {
+    color: white;
+}
+
+a {
+    color: white;
+    font-size: 20px;
+}
+
+a:hover {
+    color: #00B9AE;
+}
+
+
+.vertical-nav {
+    min-width: 17rem;
+    width: 20rem;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #21242D;
+}
+
+
+
+.separator {
+    margin: 3rem 0;
+    border-bottom: 1px dashed #fff;
+}
+
+.text-uppercase {
+    letter-spacing: 0.1em;
+}
+
+.text-gray {
+    color: #aaa;
+}
+
+li {
+    margin-left: 15px;
+}
+
+p {
+    margin-left: 15px;
+    font-size: 20px;
+}
+
+.media-body {
+    margin-left: 15px;
+}
+
+.align-title {
+    margin-left: 10px;
+}

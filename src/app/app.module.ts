@@ -13,6 +13,7 @@ import { ActorItemComponent } from './components/actor-item/actor-item.component
 import { MovieItemComponent } from './components/movie-item/movie-item.component';
 import { TvShowItemComponent } from './components/tv-show-item/tv-show-item.component';
 import { PageListComponent } from './ui/page-list/page-list.component';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PageListComponent } from './ui/page-list/page-list.component';
     ActorItemComponent,
     MovieItemComponent,
     TvShowItemComponent,
-    PageListComponent
+    PageListComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
