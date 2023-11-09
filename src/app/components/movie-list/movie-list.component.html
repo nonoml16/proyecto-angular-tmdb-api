@@ -1,1 +1,5 @@
-<p>movie-list works!</p>
+<app-movie-item
+  class="list-group-item"
+  *ngFor="let m of movieList"
+  [movie]="m"
+></app-movie-item>

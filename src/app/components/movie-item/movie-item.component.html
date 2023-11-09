@@ -1,1 +1,7 @@
-<p>movie-item works!</p>
+<div class="card">
+  <div class="card-img-overlay-smoke">
+    <div [ngStyle]="{ 'background-image': 'url(' + urlImage() + ')' }">
+      <h5 class="card-title">{{ movie.title }}</h5>
+    </div>
+  </div>
+</div>
