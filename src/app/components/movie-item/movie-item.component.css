@@ -4,3 +4,18 @@
     border-radius: 20px;
     background-size: 100%;
 }
+
+.tamano{
+    width: 322px;
+    height: 422px;
+    border-radius: 20px;
+    background-size: 100%;
+    color: white;
+}
+
+.btn-details{
+    color: white;
+    border: 15px;
+    background-color: rgba(249, 249, 249, 20%);
+    
+}

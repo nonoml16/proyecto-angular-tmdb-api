@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActorListResponse } from '../models/actor-list.interface';
 import { ActorDetailResponse } from '../models/actor-detail.interface';
 import { Observable } from 'rxjs';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 
 const ACTOR_BASE_URL = 'person';
 

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { TvShowListResponse } from '../models/tv-show-list.interface';
-import { environment } from 'src/app/environments/environment';
+import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { TvShowDetailResponse } from '../models/tv-show-detail.interface';
 
