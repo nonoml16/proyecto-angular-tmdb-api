@@ -46,3 +46,18 @@ p {
     margin-top: auto;
     padding-top: 350px;
 }
+
+.home {
+    color: #00B9AE;
+    border-right: 4px solid #00B9AE;
+}
+
+.navbar-top {
+    background-color: #16181E;
+    height: 100px;
+}
+
+main {
+    background-color: #16181E;
+    color: white;
+}
