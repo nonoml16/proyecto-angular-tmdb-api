@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.css']
+  selector: 'app-nav-bar-horizontal',
+  templateUrl: './nav-bar-horizontal.component.html',
+  styleUrls: ['./nav-bar-horizontal.component.css']
 })
-export class NavBarComponent {
+export class NavBarHorizontalComponent {
 
   constructor(private route: ActivatedRoute) { }
 
@@ -24,10 +24,7 @@ export class NavBarComponent {
 
   isTrendingRouteActive(): boolean {
     return this.route.snapshot.firstChild?.routeConfig?.path === 'trending';
-  }
 
-  isHomeRouteActive(): boolean {
-    return this.route.snapshot.firstChild?.routeConfig?.path === 'home';
   }
 
 }

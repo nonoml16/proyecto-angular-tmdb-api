@@ -14,6 +14,7 @@ import { MovieItemComponent } from './components/movie-item/movie-item.component
 import { TvShowItemComponent } from './components/tv-show-item/tv-show-item.component';
 import { PageListComponent } from './ui/page-list/page-list.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NavBarHorizontalComponent } from './components/nav-bar-horizontal/nav-bar-horizontal.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     MovieItemComponent,
     TvShowItemComponent,
     PageListComponent,
-    NavBarComponent
+    NavBarComponent,
+    NavBarHorizontalComponent
   ],
   imports: [
     BrowserModule,
