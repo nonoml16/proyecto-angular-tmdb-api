@@ -1,36 +1,39 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { PageHomeComponent } from './ui/page-home/page-home.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
+  { path: 'home', component: PageHomeComponent },
   {
     path: 'movies',
-    component: NavBarComponent,
+    component: AppComponent,
     children: [
-      { path: 'now-playing', component: NavBarComponent },
-      { path: 'popular', component: NavBarComponent },
-      { path: 'top-rated', component: NavBarComponent },
-      { path: 'upcoming', component: NavBarComponent },
+      { path: 'now-playing', component: AppComponent },
+      { path: 'popular', component: AppComponent },
+      { path: 'top-rated', component: AppComponent },
+      { path: 'upcoming', component: AppComponent },
     ]
   },
-  { path: 'actors', component: NavBarComponent },
+  { path: 'actors', component: AppComponent },
   {
     path: 'tv-shows',
-    component: NavBarComponent,
+    component: AppComponent,
     children: [
-      { path: 'airing-today', component: NavBarComponent },
-      { path: 'on-the-air', component: NavBarComponent },
-      { path: 'popular', component: NavBarComponent },
-      { path: 'top-rated', component: NavBarComponent }
+      { path: 'airing-today', component: AppComponent },
+      { path: 'on-the-air', component: AppComponent },
+      { path: 'popular', component: AppComponent },
+      { path: 'top-rated', component: AppComponent }
     ]
   },
   {
     path: 'trending',
-    component: NavBarComponent,
+    component: AppComponent,
     children: [
-      { path: 'tv-shows', component: NavBarComponent },
-      { path: 'movies', component: NavBarComponent },
-      { path: 'actors', component: NavBarComponent }
+      { path: 'tv-shows', component: AppComponent },
+      { path: 'movies', component: AppComponent },
+      { path: 'actors', component: AppComponent }
     ]
   },
 

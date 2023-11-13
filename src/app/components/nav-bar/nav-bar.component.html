@@ -1,6 +1,4 @@
 <div class="container-fluid">
-
-
     <div class="row">
         <nav class="col-md-3 col-lg-2 d-md-block sidebar">
             <div class="vertical-nav" id="sidebar">
@@ -17,7 +15,9 @@
 
                 <ul class="nav flex-column mb-0">
                     <li class="nav-item">
-                        <a href="#" class="nav-link home d-flex align-items-center">
+                        <a routerLink="/home"
+                            [ngClass]="{'active': isHomeRouteActive(), 'inactive': !isHomeRouteActive()}"
+                            class="nav-link home d-flex align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor"
                                 class="bi bi-house-door" viewBox="0 0 16 16">
                                 <path
@@ -95,68 +95,5 @@
                 </ul>
             </div>
         </nav>
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-            <nav class="navbar navbar-expand-lg navbar-top">
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <ng-container *ngIf="isMoviesRouteActive()">
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/movies/now-playing">Now
-                                    Playing</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/movies/popular">Popular</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/movies/top-rated">Top
-                                    Rated</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/movies/upcoming">Upcoming</a>
-                            </li>
-                        </ng-container>
-                        <li class="nav-item" *ngIf="isActorsRouteActive()">
-                            <a class="nav-link" routerLinkActive="active" routerLink="/actors">Popular</a>
-                        </li>
-                        <ng-container *ngIf="isTVShowRouteActive()">
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/tv-shows/airing-today">Airing
-                                    today</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/tv-shows/top-rated">Top
-                                    Rated</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/tv-shows/on-the-air">On the
-                                    air</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/tv-shows/popular">Popular</a>
-                            </li>
-                        </ng-container>
-                        <ng-container *ngIf="isTrendingRouteActive()">
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/trending/tv-shows">TV
-                                    Shows</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/trending/movies">Movies</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" routerLinkActive="active" routerLink="/trending/actors">Actors</a>
-                            </li>
-                        </ng-container>
-                    </ul>
-                    <div class="nav-item d-flex ms-auto">
-                        <a class="nav-link" href="/tu-pagina-de-perfil">
-                            User
-                            <img src="https://icon-library.com/images/my-profile-icon-png/my-profile-icon-png-22.jpg"
-                                alt="Profile" width="30" height="30" class="rounded-circle">
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </main>
     </div>
 </div>
