@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MovieDetailResponse } from '../models/movie-detail.interface';
 import { environment } from 'src/environments/environment';
+import { GenreResponse } from '../models/genre.interface';
 
 const MOVIE_BASE_URL = 'movie';
 
@@ -29,6 +30,10 @@ export class MovieService {
 
   getListP(): Observable<MovieListResponse> {
     return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/now_playing?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+  }
+
+  getGenres(): Observable<GenreResponse>{
+    return this.http.get<GenreResponse>(`https://api.themoviedb.org/3/genre/movie/list?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 
   getList(page:number): Observable<MovieListResponse> {

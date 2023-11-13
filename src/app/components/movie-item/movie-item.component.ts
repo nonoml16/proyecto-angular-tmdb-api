@@ -6,26 +6,7 @@ import { Movie } from 'src/app/models/movie-list.interface';
 @Component({
   selector: 'app-movie-item',
   templateUrl: './movie-item.component.html',
-  styleUrls: ['./movie-item.component.css'],
-  styles: [
-		`
-			i {
-				position: relative;
-				display: inline-block;
-				font-size: 2.5rem;
-				padding-right: 0.1rem;
-				color: #d3d3d3;
-			}
-
-			.filled {
-				color: red;
-				overflow: hidden;
-				position: absolute;
-				top: 0;
-				left: 0;
-			}
-		`,
-	],
+  styleUrls: ['./movie-item.component.css']
 })
 export class MovieItemComponent {
 
