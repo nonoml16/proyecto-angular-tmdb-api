@@ -1,6 +1,7 @@
 
 import { Component, Input } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
+import { Genre } from 'src/app/models/genre.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
 
 @Component({
@@ -11,6 +12,7 @@ import { Movie } from 'src/app/models/movie-list.interface';
 export class MovieItemComponent {
 
   @Input() movie!: Movie;
+  @Input() genres: Genre[] = [];
   
   urlImage():string {
     return `https://image.tmdb.org/t/p/original${this.movie.poster_path}`;
@@ -18,6 +20,11 @@ export class MovieItemComponent {
 
   raiting():number{
     return this.movie.vote_average / 2;
+  }
+
+  getGenreNames(genreIds: number[]): string[] {
+    const movieGenres = this.genres.filter((genre) => genreIds.includes(genre.id));
+    return movieGenres.map((genre) => genre.name);
   }
 
   constructor(config: NgbRatingConfig) {
