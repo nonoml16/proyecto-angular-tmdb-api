@@ -2,6 +2,17 @@ nav {
     color: white;
 }
 
+.horizontal-nav {
+    height: 100px;
+    position: fixed;
+    top: 0;
+    left: 20rem;
+    right: 0;
+    background-color: #16181E;
+    z-index: 0;
+    padding: 30px
+}
+
 a {
     color: white;
     font-size: 20px;
@@ -11,17 +22,6 @@ a:hover {
     color: #00B9AE;
 }
 
-.vertical-nav {
-    min-width: 17rem;
-    width: 20rem;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #21242D;
-    z-index: 1;
-    /* Asegura que el menú vertical esté por encima del menú horizontal */
-}
 
 .text-gray {
     color: #aaa;
@@ -49,11 +49,6 @@ p {
     padding-top: 350px;
 }
 
-.active {
-    color: #00B9AE;
-    border-right: 4px solid #00B9AE;
-}
-
 .inactive {
     color: white;
     border-right: none;
@@ -67,4 +62,9 @@ p {
 main {
     background-color: #16181E;
     color: white;
+}
+
+.nav-link.active {
+    color: #00B9AE;
+    border-bottom: 4px solid #00B9AE;
 }
