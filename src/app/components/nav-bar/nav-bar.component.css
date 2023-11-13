@@ -47,9 +47,14 @@ p {
     padding-top: 350px;
 }
 
-.home {
+.active {
     color: #00B9AE;
     border-right: 4px solid #00B9AE;
+}
+
+.inactive {
+    color: white;
+    border-right: none;
 }
 
 .navbar-top {
@@ -60,4 +65,9 @@ p {
 main {
     background-color: #16181E;
     color: white;
+}
+
+.nav-link.active {
+    color: #00B9AE;
+    border-bottom: 4px solid #00B9AE;
 }
