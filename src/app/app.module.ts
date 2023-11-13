@@ -15,6 +15,7 @@ import { TvShowItemComponent } from './components/tv-show-item/tv-show-item.comp
 import { PageListComponent } from './ui/page-list/page-list.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavBarHorizontalComponent } from './components/nav-bar-horizontal/nav-bar-horizontal.component';
+import { PageDetailsComponent } from './ui/page-details/page-details.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NavBarHorizontalComponent } from './components/nav-bar-horizontal/nav-b
     TvShowItemComponent,
     PageListComponent,
     NavBarComponent,
-    NavBarHorizontalComponent
+    NavBarHorizontalComponent,
+    PageDetailsComponent
   ],
   imports: [
     BrowserModule,
