@@ -1,1 +1,23 @@
-<p>movie-list works!</p>
+<nav class="d-flex justify-content-center mt-2">
+  <ngb-pagination
+    [collectionSize]="movieCount"
+    [pageSize]="20"
+    [maxSize]="5"
+    [rotate]="true"
+    [directionLinks]="false"
+    [(page)]="actualPage"
+    (pageChange)="loadNewPage()"
+    class="align-self-centers paginacion"
+    aria-label="Default pagination"
+  ></ngb-pagination>
+</nav>
+<div class="container">
+  <div class="row">
+    <app-movie-item
+      class="mt-2 col-3"
+      *ngFor="let m of movieList"
+      [movie]="m"
+      [genres]="genres"
+    ></app-movie-item>
+  </div>
+</div>
