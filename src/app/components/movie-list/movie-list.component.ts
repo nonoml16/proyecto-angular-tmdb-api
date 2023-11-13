@@ -9,14 +9,20 @@ import { MovieService } from 'src/app/service/movie.service';
 })
 export class MovieListComponent implements OnInit{
   movieList: Movie[] = [];
+  movieCount !: number;
+  actualPage : number = 1;
 
   constructor(private movieService: MovieService){}
   
   ngOnInit(): void {
-    this.movieService.getListP().subscribe(resp => {
+    this.loadNewPage();
+    
+  }
+  loadNewPage(): void{
+    this.movieService.getList(this.actualPage).subscribe(resp => {
       this.movieList = resp.results;
+      this.movieCount = resp.total_results;
     })
   }
-
   
 }
