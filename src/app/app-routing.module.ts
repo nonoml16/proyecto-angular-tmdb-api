@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { PageHomeComponent } from './ui/page-home/page-home.component';
 import { AppComponent } from './app.component';
+import { ActorListComponent } from './components/actor-list/actor-list.component';
 
 const routes: Routes = [
-  { path: 'home', component: PageHomeComponent },
+  { path: 'home', component: AppComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: 'movies',
     component: AppComponent,
@@ -16,7 +18,7 @@ const routes: Routes = [
       { path: 'upcoming', component: AppComponent },
     ]
   },
-  { path: 'actors', component: AppComponent },
+  { path: 'actors', component: ActorListComponent },
   {
     path: 'tv-shows',
     component: AppComponent,
