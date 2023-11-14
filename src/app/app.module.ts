@@ -52,10 +52,18 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       // set defaults here
       radius: 100,
       outerStrokeWidth: 16,
-      innerStrokeWidth: 8,
+      innerStrokeWidth: 0,
       outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
-      animationDuration: 300
+      animationDuration: 300,
+      showBackground: true,
+      backgroundColor: "#21242D",
+      showSubtitle: false,
+      responsive: true,
+      titleFontSize: "100",
+      showUnits: false,
+      titleFontWeight: "600",
+      titleColor: "#ffffff"
+
     })
   ],
   providers: [],

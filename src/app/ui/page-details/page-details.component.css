@@ -1,10 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
 .fondo{
-    background-size: 100%;
-    
+    background-size: 0 100%;
+    color: white;
+    font-family: 'Lato', sans-serif;
 }
 
 .boton-trailer{
     border-radius: 40px;
     background-color: #21242D;
     color: white;
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+.titulo h1{
+    font-size: 64px;
+    font-weight: bold;
+}
+
+.titulo span{
+    color: grey;
 }

@@ -15,7 +15,7 @@ export class MovieItemComponent {
   @Input() genres: Genre[] = [];
   
   urlImage():string {
-    return `https://image.tmdb.org/t/p/original${this.movie.poster_path}`;
+    return `https://image.tmdb.org/t/p/w440_and_h660_face${this.movie.poster_path}`;
   }
 
   raiting():number{

@@ -2,7 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Genre } from 'src/app/models/genre.interface';
-import { MovieCreditsResponse } from 'src/app/models/movie-credits.interface';
+import { Cast, MovieCreditsResponse } from 'src/app/models/movie-credits.interface';
 import { MovieDetailResponse } from 'src/app/models/movie-detail.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { MovieService } from 'src/app/service/movie.service';
@@ -32,23 +32,22 @@ export class PageDetailsComponent implements OnInit{
   }
 
   urlBgImage():string {
-    return `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${this.movie.poster_path}`;
+    return `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${this.movie.backdrop_path}`;
   }
 
   urlImage():string {
     return `https://image.tmdb.org/t/p/original${this.movie.poster_path}`;
   }
 
-  getDirectorName() {
-    this.movieService.getMovieCredits(this.movieId).subscribe((response: any) => {
-      const credits = response.credits;
-      const directorCredit = credits.crew.find((credit: any) => credit.job === 'Director');
-  
-      if (directorCredit) {
-        return directorCredit.name;
-      }else{
-        return null;
-      }
-    });
+  getDirectorName():Cast[]{
+    return this.selectedMovieCredits.crew.filter(people => people.known_for_department == 'Directing');
+  }
+
+  getReleaseYear(): number{
+    return new Date(this.movie.release_date).getFullYear();
+  }
+
+  getGenreNames(): string {
+    return this.movie.genres.map(genre => genre.name).join(', ');
   }
 }
