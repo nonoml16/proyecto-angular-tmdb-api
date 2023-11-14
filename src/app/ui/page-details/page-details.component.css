@@ -1,4 +1,14 @@
+.fondo{
+    background-size: 100%;
+    background-color: #16181E;
+}
+
 .boton-trailer{
     border-radius: 40px;
     background-color: #21242D;
+    color: white;
+}
+
+.row{
+    background-color: #16181E;
 }

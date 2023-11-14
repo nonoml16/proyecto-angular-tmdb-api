@@ -1,10 +1,15 @@
 <app-nav-bar></app-nav-bar>
 <div
-  class="container"
-  [ngStyle]="{ 'background-image': 'url(' + urlBgImage() + ')' }"
+  class="fondo"
+  [ngStyle]="{
+    'background-image':
+      'url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces' +
+      (movie.poster_path || '') +
+      ')'
+  }"
 >
   <div class="row">
-    <div class="col-4">img</div>
+    <div class="col-4"><img [src]="urlImage()" alt="" width="100%" /></div>
     <div class="col-8">
       <h1>
         {{ movie.original_title }} <span>{{ movie.release_date }}</span>

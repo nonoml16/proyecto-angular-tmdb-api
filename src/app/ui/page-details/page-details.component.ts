@@ -1,4 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Genre } from 'src/app/models/genre.interface';
 import { MovieCreditsResponse } from 'src/app/models/movie-credits.interface';
@@ -21,20 +22,21 @@ export class PageDetailsComponent implements OnInit{
   genres: Genre[] = [];
   movieList: Movie[] = [];
 
-  constructor(private movieService:MovieService){
-    this.movieId = Number(this.route.snapshot.params['id']);
+  constructor(private movieService: MovieService, private sanitazer: DomSanitizer) {
+    this.movieId = this.route.snapshot.params['id'];
   }
+
   ngOnInit(): void {
-    this.movieService.getMovie(this.movieId).subscribe(resp => {this.selectedMovie = resp});
+    this.movieService.getMovie(this.movieId).subscribe(resp => {this.movie = resp});
     this.movieService.getMovieCredits(this.movieId).subscribe(resp => {this.selectedMovieCredits = resp});
   }
 
   urlBgImage():string {
-    return `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${this.movie?.poster_path}`;
+    return `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${this.movie.poster_path}`;
   }
 
   urlImage():string {
-    return `https://image.tmdb.org/t/p/original${this.movie?.poster_path}`;
+    return `https://image.tmdb.org/t/p/original${this.movie.poster_path}`;
   }
 
   getDirectorName() {

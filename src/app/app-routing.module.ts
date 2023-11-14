@@ -5,13 +5,14 @@ import { AppComponent } from './app.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-popular.component';
 import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
+import { PageDetailsComponent } from './ui/page-details/page-details.component';
 
 const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
   {
     path: 'movies',
     children: [
-      { path: 'detail/:id', component: PageMovieDetailComponent },
+      { path: 'detail/:id', component: PageDetailsComponent },
       { path: 'now-playing', component: AppComponent },
       { path: 'popular', component: PageMoviePopularComponent },
       { path: 'top-rated', component: AppComponent },
