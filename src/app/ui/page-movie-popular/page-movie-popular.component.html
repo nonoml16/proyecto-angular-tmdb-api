@@ -1,7 +1,4 @@
-<div class="container">
-    <app-movie-list class="ml-2" [list]="movieList"></app-movie-list>
-</div>
-
+<app-movie-list [list]="movieList"></app-movie-list>
 <div class="mt-2 d-flex justify-content-center align-items-center" style="width: 100%;">
     <ngb-pagination class="custom-pagination" [maxSize]="5" [boundaryLinks]="true" [collectionSize]="10000"
         [(page)]="actualPage" [pageSize]="20" (pageChange)="loadNewPage()"
