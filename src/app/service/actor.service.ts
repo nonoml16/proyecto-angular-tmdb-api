@@ -10,11 +10,11 @@ const ACTOR_BASE_URL = 'person';
 @Injectable({
   providedIn: 'root'
 })
-export class TvShowService {
+export class ActorService {
 
   constructor(private http: HttpClient) { }
 
-  getList(page:number): Observable<ActorListResponse> {
+  getList(page: number): Observable<ActorListResponse> {
     return this.http.get<ActorListResponse>(`${environment.apiBaseUrl}/${ACTOR_BASE_URL}/now_playing?api_key=${environment.apiKey}&&page=${page}`);
   }
 

@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-top">
     <div class="collapse navbar-collapse horizontal-nav">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" style="margin-left: 17%;">
             <ng-container *ngIf="isMoviesRouteActive()">
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" routerLink="/movies/popular">Popular</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" routerLink="/movies/now-playing">Now
                         Playing</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" routerLink="/movies/popular">Popular</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLinkActive="active" routerLink="/movies/top-rated">Top
