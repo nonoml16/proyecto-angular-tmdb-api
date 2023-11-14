@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { PageHomeComponent } from './ui/page-home/page-home.component';
 import { AppComponent } from './app.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-popular.component';
+import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
 
 const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
   {
     path: 'movies',
-    component: AppComponent,
     children: [
+      { path: 'detail/:id', component: PageMovieDetailComponent },
       { path: 'now-playing', component: AppComponent },
-      { path: 'popular', component: AppComponent },
+      { path: 'popular', component: PageMoviePopularComponent },
       { path: 'top-rated', component: AppComponent },
       { path: 'upcoming', component: AppComponent },
     ]

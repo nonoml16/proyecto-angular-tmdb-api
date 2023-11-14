@@ -12,9 +12,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { ActorItemComponent } from './components/actor-item/actor-item.component';
 import { MovieItemComponent } from './components/movie-item/movie-item.component';
 import { TvShowItemComponent } from './components/tv-show-item/tv-show-item.component';
-import { PageListComponent } from './ui/page-list/page-list.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavBarHorizontalComponent } from './components/nav-bar-horizontal/nav-bar-horizontal.component';
+import { PageMovieTopRatedComponent } from './ui/page-movie-top-rated/page-movie-top-rated.component';
+import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-popular.component';
+import { PageMovieNowPlayingComponent } from './ui/page-movie-now-playing/page-movie-now-playing.component';
+import { PageMovieUpcomingComponent } from './ui/page-movie-upcoming/page-movie-upcoming.component';
+import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,9 +30,13 @@ import { NavBarHorizontalComponent } from './components/nav-bar-horizontal/nav-b
     ActorItemComponent,
     MovieItemComponent,
     TvShowItemComponent,
-    PageListComponent,
     NavBarComponent,
-    NavBarHorizontalComponent
+    NavBarHorizontalComponent,
+    PageMovieTopRatedComponent,
+    PageMoviePopularComponent,
+    PageMovieNowPlayingComponent,
+    PageMovieUpcomingComponent,
+    PageMovieDetailComponent
   ],
   imports: [
     BrowserModule,
