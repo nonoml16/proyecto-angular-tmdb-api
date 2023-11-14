@@ -16,6 +16,7 @@ import { PageListComponent } from './ui/page-list/page-list.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NavBarHorizontalComponent } from './components/nav-bar-horizontal/nav-bar-horizontal.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,16 @@ import { PageDetailsComponent } from './ui/page-details/page-details.component';
     AppRoutingModule,
     NgbModule,
     NgbRatingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

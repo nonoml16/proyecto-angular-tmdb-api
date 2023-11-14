@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { MovieDetailResponse } from '../models/movie-detail.interface';
 import { environment } from 'src/environments/environment';
 import { GenreResponse } from '../models/genre.interface';
+import { MovieCreditsResponse } from '../models/movie-credits.interface';
 
 const MOVIE_BASE_URL = 'movie';
 
@@ -42,5 +43,9 @@ export class MovieService {
 
   getMovie(id: number): Observable<MovieDetailResponse> {
     return this.http.get<MovieDetailResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/${id}?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+  }
+
+  getMovieCredits(id: number): Observable<MovieCreditsResponse>{
+    return this.http.get<MovieCreditsResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/${id}/credits?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 }

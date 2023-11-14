@@ -1,4 +1,73 @@
 <app-nav-bar></app-nav-bar>
-<div class="container" [ngStyle]="{ 'background-image': 'url(' + urlBgImage() + ')' }">
-
+<div
+  class="container"
+  [ngStyle]="{ 'background-image': 'url(' + urlBgImage() + ')' }"
+>
+  <div class="row">
+    <div class="col-4">img</div>
+    <div class="col-8">
+      <h1>
+        {{ movie.original_title }} <span>{{ movie.release_date }}</span>
+      </h1>
+      <div class="d-flex">
+        <div>
+          <circle-progress
+            [percent]="movie.vote_average * 10"
+            [radius]="100"
+            [imageWidth]="10"
+            [animation]="true"
+            [animationDuration]="300"
+          ></circle-progress>
+        </div>
+        <div>
+          <button type="button" class="btn boton-trailer">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-play-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"
+              />
+            </svg>
+            Ver trailer
+          </button>
+        </div>
+        <div></div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <h4>{{ getDirectorName() }}</h4>
+          <h4>Director</h4>
+        </div>
+        <div class="col-3">
+          <h4>{{ movie.original_language }}</h4>
+          <h4>Original language</h4>
+        </div>
+        <div class="col-3">
+          <h4>{{ movie.budget }}</h4>
+          <h4>Budget</h4>
+        </div>
+        <div class="col-3">
+          <h4>{{ movie.revenue }}</h4>
+          <h4>Revenue</h4>
+        </div>
+      </div>
+      <h3>Overview:</h3>
+      <p>{{ movie.overview }}</p>
+    </div>
+  </div>
+  <div
+    class="list-group list-group-horizontal position-relative overflow-auto w-100"
+  >
+    <app-movie-item
+      class="list-group-item"
+      *ngFor="let m of movieList"
+      [movie]="m"
+      [genres]="genres"
+    ></app-movie-item>
+  </div>
 </div>
