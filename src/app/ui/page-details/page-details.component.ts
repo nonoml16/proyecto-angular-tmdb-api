@@ -1,12 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Genre } from 'src/app/models/genre.interface';
 import { Cast, MovieCreditsResponse } from 'src/app/models/movie-credits.interface';
 import { MovieDetailResponse } from 'src/app/models/movie-detail.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { MovieService } from 'src/app/service/movie.service';
-import { Trailer } from 'src/app/models/trailer-list.interface';
+import { Trailer, TrailerListResponse } from 'src/app/models/trailer-list.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -23,7 +23,8 @@ export class PageDetailsComponent implements OnInit{
   selectedMovieCredits !: MovieCreditsResponse;
   genres: Genre[] = [];
   movieList: Movie[] = [];
-  trailerOfMovie: Trailer | undefined;
+  trailerOfMovie!: Trailer;
+  trailerUrl: SafeResourceUrl | undefined;
 
   constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private modalService: NgbModal) {
     this.movieId = this.route.snapshot.params['id'];
@@ -60,18 +61,21 @@ export class PageDetailsComponent implements OnInit{
     return this.movie.genres.map(genre => genre.name).join(', ');
   }
 
-  getTrailerURL(video: Trailer | undefined) {
-    if (video?.site == 'YouTube') {
-      return this.sanitazer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.key}`);
-    } else {
-      return this.sanitazer.bypassSecurityTrustResourceUrl(`https://player.vimeo.com/video/${video?.key}`);
-    }
+  open(idmovie: number, content: any) {
+    this.movieService.getListVideoByIdMovie(idmovie).subscribe((trailers: TrailerListResponse) => {
+      this.trailerOfMovie = trailers.results[0];
+      this.trailerUrl = this.getTrailerURL(this.trailerOfMovie);
+      this.modalService.open(content);
+    });
   }
 
-  open(idmovie: number,content: any) {
-      this.movieService.getListVideoByIdMovie(idmovie).subscribe(trailers => {
-        this.trailerOfMovie = trailers.results[0];
-      });
-    this.modalService.open(content)
+  getTrailerURL(video: Trailer): SafeResourceUrl | undefined {
+    if (video?.site === 'YouTube') {
+      return this.sanitazer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.key}`);
+    } else if (video?.site === 'Vimeo') {
+      return this.sanitazer.bypassSecurityTrustResourceUrl(`https://player.vimeo.com/video/${video.key}`);
+    } else {
+      return undefined;
+    }
   }
 }
