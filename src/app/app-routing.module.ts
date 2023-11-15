@@ -6,6 +6,7 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-popular.component';
 import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
+import { ActorListComponent } from './components/actor-list/actor-list.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },

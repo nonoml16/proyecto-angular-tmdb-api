@@ -3,6 +3,7 @@
     height: 422px;
     border-radius: 20px;
     overflow: hidden;
+    border: none;
 }
 
 .tamano {
@@ -21,7 +22,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .pt-4 {

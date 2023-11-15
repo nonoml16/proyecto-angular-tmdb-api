@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { GenreResponse } from '../models/genre.interface';
 import { MovieCreditsResponse } from '../models/movie-credits.interface';
 import { TrailerListResponse } from '../models/trailer-list.interface';
+import { CreditsResponse } from '../models/credits-interface';
 
 const MOVIE_BASE_URL = 'movie';
 
@@ -55,11 +56,15 @@ export class MovieService {
     return this.http.get<MovieDetailResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/${id}?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 
-  getMovieCredits(id: number): Observable<MovieCreditsResponse>{
+  getMovieCredits(id: number): Observable<MovieCreditsResponse> {
     return this.http.get<MovieCreditsResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/${id}/credits?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 
   getListVideoByIdMovie(id: number): Observable<TrailerListResponse> {
     return this.http.get<TrailerListResponse>(`https://api.themoviedb.org/3/${id}/videos?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+  }
+
+  getCredits(id: number): Observable<CreditsResponse> {
+    return this.http.get<CreditsResponse>(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 }

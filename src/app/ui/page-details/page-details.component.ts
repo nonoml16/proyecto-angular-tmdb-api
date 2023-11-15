@@ -14,25 +14,31 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './page-details.component.html',
   styleUrls: ['./page-details.component.css']
 })
-export class PageDetailsComponent implements OnInit{
+export class PageDetailsComponent implements OnInit {
   movie!: MovieDetailResponse;
   credits: MovieCreditsResponse | undefined;
   route: ActivatedRoute = inject(ActivatedRoute);
-  movieId : number = 0;
+  movieId: number = 0;
   selectedMovie !: MovieDetailResponse;
   selectedMovieCredits !: MovieCreditsResponse;
   genres: Genre[] = [];
   movieList: Movie[] = [];
   trailerOfMovie!: Trailer;
   trailerUrl: SafeResourceUrl | undefined;
+  cast!: Cast[];
+  crew !: Cast[];
 
   constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private modalService: NgbModal) {
     this.movieId = this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {
-    this.movieService.getMovie(this.movieId).subscribe(resp => {this.movie = resp});
-    this.movieService.getMovieCredits(this.movieId).subscribe(resp => {this.selectedMovieCredits = resp});
+    this.movieService.getMovie(this.movieId).subscribe(resp => { this.movie = resp });
+    this.movieService.getCredits(this.movieId).subscribe(resp => {
+      this.cast = resp.cast;
+      this.crew = resp.crew;
+    });
+    this.movieService.getMovieCredits(this.movieId).subscribe(resp => { this.selectedMovieCredits = resp });
     this.movieService.getListP().subscribe(resp => {
       this.movieList = resp.results;
       this.movieService.getGenres().subscribe(respG => {
@@ -41,19 +47,19 @@ export class PageDetailsComponent implements OnInit{
     });
   }
 
-  urlBgImage():string {
+  urlBgImage(): string {
     return `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${this.movie.backdrop_path}`;
   }
 
-  urlImage():string {
+  urlImage(): string {
     return `https://image.tmdb.org/t/p/original${this.movie.poster_path}`;
   }
 
-  getDirectorName():Cast[]{
+  getDirectorName(): Cast[] {
     return this.selectedMovieCredits.crew.filter(people => people.known_for_department == 'Directing');
   }
 
-  getReleaseYear(): number{
+  getReleaseYear(): number {
     return new Date(this.movie.release_date).getFullYear();
   }
 
@@ -67,6 +73,14 @@ export class PageDetailsComponent implements OnInit{
       this.trailerUrl = this.getTrailerURL(this.trailerOfMovie);
       this.modalService.open(content);
     });
+  }
+
+  getActorsList(): Cast[] {
+    return this.cast.filter(people => people.known_for_department == 'Acting')
+  }
+
+  getActorImageUrl(actor: Cast): string {
+    return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${actor.profile_path}`;
   }
 
   getTrailerURL(video: Trailer): SafeResourceUrl | undefined {
