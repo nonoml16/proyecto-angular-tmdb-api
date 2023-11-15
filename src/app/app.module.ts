@@ -21,6 +21,7 @@ import { PageMovieUpcomingComponent } from './ui/page-movie-upcoming/page-movie-
 import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-today-list/page-tv-show-airling-today-list.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     PageMoviePopularComponent,
     PageMovieNowPlayingComponent,
     PageMovieUpcomingComponent,
-    PageMovieDetailComponent
+    PageMovieDetailComponent,
+    PageTvShowAirlingTodayListComponent
   ],
   imports: [
     BrowserModule,
