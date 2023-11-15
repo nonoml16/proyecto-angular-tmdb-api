@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
 
+.ahumado{
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .fondo{
+    background-color: rgba(0, 0, 0, 0.5);
+    padding-top: 123px;
     background-size: 0 100%;
     color: white;
     font-family: 'Lato', sans-serif;
+}
+
+.contenedor{
+    margin-left: 88px;
+    margin-right: 88px;
 }
 
 .boton-trailer{
@@ -19,8 +32,30 @@
 .titulo h1{
     font-size: 64px;
     font-weight: bold;
+    margin-top: 59px;
+    margin-bottom: 15px;
 }
 
 .titulo span{
     color: grey;
+}
+
+.genres{
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.caracteristicas{
+    font-size: 24px;
+}
+
+.titulo-overview{
+    font-size: 32px;
+}
+
+.cuerpo-overview{
+    font-size: 24px;
+}
+.reparto{
+    width: 1396px;
 }
