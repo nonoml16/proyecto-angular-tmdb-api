@@ -7,6 +7,7 @@ import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-po
 import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
 import { ActorListComponent } from './components/actor-list/actor-list.component';
+import { PageMovieUpcomingComponent } from './ui/page-movie-upcoming/page-movie-upcoming.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },
@@ -18,7 +19,7 @@ const routes: Routes = [
       { path: 'now-playing', component: AppComponent },
       { path: 'popular', component: PageMoviePopularComponent },
       { path: 'top-rated', component: AppComponent },
-      { path: 'upcoming', component: AppComponent },
+      { path: 'upcoming', component: PageMovieUpcomingComponent },
     ]
   },
   { path: 'actors', component: ActorListComponent },
