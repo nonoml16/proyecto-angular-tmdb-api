@@ -4,6 +4,7 @@ import { TvShowListResponse } from '../models/tv-show-list.interface';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { TvShowDetailResponse } from '../models/tv-show-detail.interface';
+import { GenreResponse } from '../models/genre.interface';
 
 const TV_SHOW_BASE_URL = 'tv';
 
@@ -14,11 +15,15 @@ export class TvShowService {
 
   constructor(private http: HttpClient) { }
 
-  getList(page:number): Observable<TvShowListResponse> {
-    return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/now_playing?api_key=${environment.apiKey}&&page=${page}`);
+  getListAiringTday(page:number): Observable<TvShowListResponse> {
+    return this.http.get<TvShowListResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/airing_today?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
   }
 
   getTvShow(id: number): Observable<TvShowDetailResponse> {
-    return this.http.get<TvShowDetailResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/${id}?api_key=${environment.apiKey}`);
+    return this.http.get<TvShowDetailResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/${id}?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+  }
+
+  getGenres(): Observable<GenreResponse> {
+    return this.http.get<GenreResponse>(`https://api.themoviedb.org/3/genre/tv/list?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 }

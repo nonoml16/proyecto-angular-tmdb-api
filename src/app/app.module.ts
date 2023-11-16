@@ -22,6 +22,7 @@ import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-deta
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-today-list/page-tv-show-airling-today-list.component';
+import { TvShowListComponent } from './components/tv-show-list/tv-show-list.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-t
     PageMovieNowPlayingComponent,
     PageMovieUpcomingComponent,
     PageMovieDetailComponent,
-    PageTvShowAirlingTodayListComponent
+    PageTvShowAirlingTodayListComponent,
+    TvShowListComponent
   ],
   imports: [
     BrowserModule,

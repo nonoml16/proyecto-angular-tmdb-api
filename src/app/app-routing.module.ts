@@ -7,6 +7,7 @@ import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-po
 import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
 import { ActorListComponent } from './components/actor-list/actor-list.component';
+import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-today-list/page-tv-show-airling-today-list.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },
@@ -24,9 +25,8 @@ const routes: Routes = [
   { path: 'actors', component: ActorListComponent },
   {
     path: 'tv-shows',
-    component: AppComponent,
     children: [
-      { path: 'airing-today', component: AppComponent },
+      { path: 'airing-today', component: PageTvShowAirlingTodayListComponent },
       { path: 'on-the-air', component: AppComponent },
       { path: 'popular', component: AppComponent },
       { path: 'top-rated', component: AppComponent }
