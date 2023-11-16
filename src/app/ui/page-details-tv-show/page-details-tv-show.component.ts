@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Genre } from 'src/app/models/genre.interface';
 import { Trailer, TrailerListResponse } from 'src/app/models/trailer-list.interface';
 import { Cast, TvShowCreditsResponse } from 'src/app/models/tv-show-credits.interface';
-import { TvShowDetailResponse } from 'src/app/models/tv-show-detail.interface';
+import { Season, TvShowDetailResponse } from 'src/app/models/tv-show-detail.interface';
 import { TvShow } from 'src/app/models/tv-show-list.interface';
 import { TvShowService } from 'src/app/service/tv-show.service';
 
@@ -27,13 +27,16 @@ export class PageDetailsTvShowComponent implements OnInit {
   trailerUrl: SafeResourceUrl | undefined;
   cast!: Cast[];
   crew !: Cast[];
+  seasons: Season[] = [];
 
   constructor(private tvshowService: TvShowService, private sanitazer: DomSanitizer, private modalService: NgbModal) {
     this.tvshowId = this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {
-    this.tvshowService.getTvShow(this.tvshowId).subscribe(resp => { this.tvshow = resp });
+    this.tvshowService.getTvShow(this.tvshowId).subscribe(resp => { 
+      this.tvshow = resp;
+      this.seasons = this.tvshow.seasons; });
     this.tvshowService.getCredits(this.tvshowId).subscribe(resp => {
       this.cast = resp.cast;
       this.crew = resp.crew;
