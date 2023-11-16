@@ -13,6 +13,7 @@ import { PageTvShowTopRatedListComponent } from './ui/page-tv-show-top-rated-lis
 import { PageTvShowOnTheAirListComponent } from './ui/page-tv-show-on-the-air-list/page-tv-show-on-the-air-list.component';
 import { PageTvShowPopularListComponent } from './ui/page-tv-show-popular-list/page-tv-show-popular-list.component';
 import { PageDetailsTvShowComponent } from './ui/page-details-tv-show/page-details-tv-show.component';
+import { PageActorDetailComponent } from './ui/page-actor-detail/page-actor-detail.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },
@@ -40,9 +41,14 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'tv-show',
+    children: [
+      { path: 'detail/:id', component: PageDetailsTvShowComponent }
+    ]
+  },
+  {
     path: 'tv-shows',
     children: [
-      { path: 'detail/:id', component: PageDetailsTvShowComponent },
       { path: 'airing-today', component: PageTvShowAirlingTodayListComponent },
       { path: 'on-the-air', component: PageTvShowOnTheAirListComponent },
       { path: 'popular', component: PageTvShowPopularListComponent },

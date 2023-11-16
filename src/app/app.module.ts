@@ -46,10 +46,15 @@ import { PageActorDetailComponent } from './ui/page-actor-detail/page-actor-deta
     PageMoviePopularComponent,
     PageMovieNowPlayingComponent,
     PageMovieUpcomingComponent,
-    PageMovieDetailComponent,
     PageTvShowAirlingTodayListComponent,
-    TvShowListComponent
-    PageMovieUpcomingComponent
+    TvShowListComponent,
+    PageMovieUpcomingComponent,
+    PageActorDetailComponent,
+    PageTvShowTopRatedListComponent,
+    PageTvShowOnTheAirListComponent,
+    PageTvShowAirlingTodayListComponent,
+    PageTvShowPopularListComponent,
+    PageDetailsTvShowComponent
   ],
   imports: [
     BrowserModule,
