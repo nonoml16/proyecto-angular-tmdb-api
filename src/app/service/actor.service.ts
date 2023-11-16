@@ -4,6 +4,8 @@ import { ActorListResponse } from '../models/actor-list.interface';
 import { ActorDetailResponse } from '../models/actor-detail.interface';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { MoviePersonResponse } from '../models/actor-movie.interface';
+import { TvShowsPersonResponse } from '../models/actor-tvshow.interface';
 
 const ACTOR_BASE_URL = 'person';
 
@@ -20,5 +22,13 @@ export class ActorService {
 
   getById(id: number): Observable<ActorDetailResponse> {
     return this.http.get<ActorDetailResponse>(`${environment.apiBaseUrl}/${ACTOR_BASE_URL}/${id}?api_key=${environment.apiKey}`);
+  }
+
+  getMovies(id: number): Observable<MoviePersonResponse> {
+    return this.http.get<MoviePersonResponse>(`${environment.apiBaseUrl}/person/${id}/movie_credits?${environment.apiKey}`);
+  }
+
+  getTvShows(id: number): Observable<TvShowsPersonResponse> {
+    return this.http.get<TvShowsPersonResponse>(`${environment.apiBaseUrl}/person/${id}/tv_credits?${environment.apiKey}`);
   }
 }
