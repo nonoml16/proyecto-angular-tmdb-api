@@ -20,6 +20,8 @@ import { PageMovieNowPlayingComponent } from './ui/page-movie-now-playing/page-m
 import { PageMovieUpcomingComponent } from './ui/page-movie-upcoming/page-movie-upcoming.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-today-list/page-tv-show-airling-today-list.component';
+import { TvShowListComponent } from './components/tv-show-list/tv-show-list.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,10 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     PageMovieTopRatedComponent,
     PageMoviePopularComponent,
     PageMovieNowPlayingComponent,
+    PageMovieUpcomingComponent,
+    PageMovieDetailComponent,
+    PageTvShowAirlingTodayListComponent,
+    TvShowListComponent
     PageMovieUpcomingComponent
   ],
   imports: [
