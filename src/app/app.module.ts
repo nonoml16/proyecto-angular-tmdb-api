@@ -18,7 +18,6 @@ import { PageMovieTopRatedComponent } from './ui/page-movie-top-rated/page-movie
 import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-popular.component';
 import { PageMovieNowPlayingComponent } from './ui/page-movie-now-playing/page-movie-now-playing.component';
 import { PageMovieUpcomingComponent } from './ui/page-movie-upcoming/page-movie-upcoming.component';
-import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-today-list/page-tv-show-airling-today-list.component';
@@ -45,6 +44,7 @@ import { TvShowListComponent } from './components/tv-show-list/tv-show-list.comp
     PageMovieDetailComponent,
     PageTvShowAirlingTodayListComponent,
     TvShowListComponent
+    PageMovieUpcomingComponent
   ],
   imports: [
     BrowserModule,

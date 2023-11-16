@@ -4,12 +4,12 @@ import { PageHomeComponent } from './ui/page-home/page-home.component';
 import { AppComponent } from './app.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-popular.component';
-import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
 import { ActorListComponent } from './components/actor-list/actor-list.component';
 import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-today-list/page-tv-show-airling-today-list.component';
 import { PageMovieUpcomingComponent } from './ui/page-movie-upcoming/page-movie-upcoming.component';
 import { PageMovieTopRatedComponent } from './ui/page-movie-top-rated/page-movie-top-rated.component';
+import { PageMovieNowPlayingComponent } from './ui/page-movie-now-playing/page-movie-now-playing.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },
@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'movies',
     children: [
       { path: 'detail/:id', component: PageDetailsComponent },
-      { path: 'now-playing', component: AppComponent },
+      { path: 'now-playing', component: PageMovieNowPlayingComponent },
       { path: 'popular', component: PageMoviePopularComponent },
       { path: 'top-rated', component: PageMovieTopRatedComponent },
       { path: 'upcoming', component: PageMovieUpcomingComponent },
