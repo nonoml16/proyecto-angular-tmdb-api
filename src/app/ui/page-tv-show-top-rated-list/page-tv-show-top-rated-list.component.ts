@@ -4,11 +4,11 @@ import { TvShow } from 'src/app/models/tv-show-list.interface';
 import { TvShowService } from 'src/app/service/tv-show.service';
 
 @Component({
-  selector: 'app-page-tv-show-airling-today-list',
-  templateUrl: './page-tv-show-airling-today-list.component.html',
-  styleUrls: ['./page-tv-show-airling-today-list.component.css']
+  selector: 'app-page-tv-show-top-rated-list',
+  templateUrl: './page-tv-show-top-rated-list.component.html',
+  styleUrls: ['./page-tv-show-top-rated-list.component.css']
 })
-export class PageTvShowAirlingTodayListComponent implements OnInit {
+export class PageTvShowTopRatedListComponent implements OnInit {
 
   tvshowList: TvShow[] = [];
   actualPage: number = 1;
@@ -22,7 +22,7 @@ export class PageTvShowAirlingTodayListComponent implements OnInit {
 
   }
   loadNewPage(): void {
-    this.tvshowService.getListAiringTday(this.actualPage).subscribe(resp => {
+    this.tvshowService.getListTopRated(this.actualPage).subscribe(resp => {
       this.tvshowList = resp.results;
       this.movieCount = resp.total_results;
       this.tvshowService.getGenres().subscribe(respG => {

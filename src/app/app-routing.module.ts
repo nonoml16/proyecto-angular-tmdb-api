@@ -10,6 +10,7 @@ import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-t
 import { PageMovieUpcomingComponent } from './ui/page-movie-upcoming/page-movie-upcoming.component';
 import { PageMovieTopRatedComponent } from './ui/page-movie-top-rated/page-movie-top-rated.component';
 import { PageMovieNowPlayingComponent } from './ui/page-movie-now-playing/page-movie-now-playing.component';
+import { PageTvShowTopRatedListComponent } from './ui/page-tv-show-top-rated-list/page-tv-show-top-rated-list.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },
@@ -31,7 +32,7 @@ const routes: Routes = [
       { path: 'airing-today', component: PageTvShowAirlingTodayListComponent },
       { path: 'on-the-air', component: AppComponent },
       { path: 'popular', component: AppComponent },
-      { path: 'top-rated', component: AppComponent }
+      { path: 'top-rated', component: PageTvShowTopRatedListComponent }
     ]
   },
   {
