@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageHomeComponent } from './ui/page-home/page-home.component';
 import { AppComponent } from './app.component';
-import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-popular.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
 import { ActorListComponent } from './components/actor-list/actor-list.component';
@@ -12,6 +11,7 @@ import { PageMovieTopRatedComponent } from './ui/page-movie-top-rated/page-movie
 import { PageMovieNowPlayingComponent } from './ui/page-movie-now-playing/page-movie-now-playing.component';
 import { PageTvShowTopRatedListComponent } from './ui/page-tv-show-top-rated-list/page-tv-show-top-rated-list.component';
 import { PageTvShowOnTheAirListComponent } from './ui/page-tv-show-on-the-air-list/page-tv-show-on-the-air-list.component';
+import { PageTvShowPopularListComponent } from './ui/page-tv-show-popular-list/page-tv-show-popular-list.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },
@@ -32,7 +32,7 @@ const routes: Routes = [
     children: [
       { path: 'airing-today', component: PageTvShowAirlingTodayListComponent },
       { path: 'on-the-air', component: PageTvShowOnTheAirListComponent },
-      { path: 'popular', component: AppComponent },
+      { path: 'popular', component: PageTvShowPopularListComponent },
       { path: 'top-rated', component: PageTvShowTopRatedListComponent }
     ]
   },
