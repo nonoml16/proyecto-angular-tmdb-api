@@ -6,9 +6,11 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-popular.component';
 import { PageMovieDetailComponent } from './ui/page-movie-detail/page-movie-detail.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
+import { ActorListComponent } from './components/actor-list/actor-list.component';
 
 const routes: Routes = [
-  { path: 'home', component: PageHomeComponent },
+  { path: 'home', component: AppComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: 'movies',
     children: [
@@ -19,7 +21,7 @@ const routes: Routes = [
       { path: 'upcoming', component: AppComponent },
     ]
   },
-  { path: 'actors', component: AppComponent },
+  { path: 'actors', component: ActorListComponent },
   {
     path: 'tv-shows',
     component: AppComponent,
