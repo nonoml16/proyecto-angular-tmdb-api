@@ -25,10 +25,10 @@ export class ActorService {
   }
 
   getMovies(id: number): Observable<MoviePersonResponse> {
-    return this.http.get<MoviePersonResponse>(`${environment.apiBaseUrl}/person/${id}/movie_credits?${environment.apiKey}`);
+    return this.http.get<MoviePersonResponse>(`${environment.apiBaseUrl}/person/${id}/movie_credits?api_key=${environment.apiKey}`);
   }
 
   getTvShows(id: number): Observable<TvShowsPersonResponse> {
-    return this.http.get<TvShowsPersonResponse>(`${environment.apiBaseUrl}/person/${id}/tv_credits?${environment.apiKey}`);
+    return this.http.get<TvShowsPersonResponse>(`${environment.apiBaseUrl}/person/${id}/tv_credits?api_key=${environment.apiKey}`);
   }
 }
