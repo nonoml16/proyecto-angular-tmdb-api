@@ -15,7 +15,7 @@ import { PageTvShowPopularListComponent } from './ui/page-tv-show-popular-list/p
 import { PageDetailsTvShowComponent } from './ui/page-details-tv-show/page-details-tv-show.component';
 
 const routes: Routes = [
-  { path: 'home', component: AppComponent },
+  { path: 'home', component: PageHomeComponent },
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: 'movies',
