@@ -23,6 +23,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-today-list/page-tv-show-airling-today-list.component';
 import { TvShowListComponent } from './components/tv-show-list/tv-show-list.component';
 import { PageTvShowTopRatedListComponent } from './ui/page-tv-show-top-rated-list/page-tv-show-top-rated-list.component';
+import { PageTvShowOnTheAirListComponent } from './ui/page-tv-show-on-the-air-list/page-tv-show-on-the-air-list.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { PageTvShowTopRatedListComponent } from './ui/page-tv-show-top-rated-lis
     PageTvShowAirlingTodayListComponent,
     TvShowListComponent,
     PageMovieUpcomingComponent,
-    PageTvShowTopRatedListComponent
+    PageTvShowTopRatedListComponent,
+    PageTvShowOnTheAirListComponent
   ],
   imports: [
     BrowserModule,

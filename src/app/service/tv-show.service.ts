@@ -23,6 +23,10 @@ export class TvShowService {
     return this.http.get<TvShowListResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/top_rated?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
   }
 
+  getListOnTheAir(page:number): Observable<TvShowListResponse> {
+    return this.http.get<TvShowListResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/on_the_air?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
+  }
+
   getTvShow(id: number): Observable<TvShowDetailResponse> {
     return this.http.get<TvShowDetailResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/${id}?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
