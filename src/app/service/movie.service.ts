@@ -47,6 +47,10 @@ export class MovieService {
     return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/top_rated?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
   }
 
+  getNowPlayingList(page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/now_playing?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
+  }
+
   getListP(): Observable<MovieListResponse> {
     return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/now_playing?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }

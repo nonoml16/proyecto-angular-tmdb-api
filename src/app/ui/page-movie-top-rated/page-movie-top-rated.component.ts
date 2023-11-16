@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Genre } from 'src/app/models/movie-detail.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { MovieService } from 'src/app/service/movie.service';
@@ -8,11 +8,12 @@ import { MovieService } from 'src/app/service/movie.service';
   templateUrl: './page-movie-top-rated.component.html',
   styleUrls: ['./page-movie-top-rated.component.css']
 })
-export class PageMovieTopRatedComponent {
+export class PageMovieTopRatedComponent implements OnInit {
 
   movieList: Movie[] = [];
   actualPage: number = 1;
   genres: Genre[] = [];
+  movieCount!: number;
 
   constructor(private movieService: MovieService) { }
 
@@ -23,6 +24,7 @@ export class PageMovieTopRatedComponent {
   loadNewPage(): void {
     this.movieService.getTopRatedList(this.actualPage).subscribe(resp => {
       this.movieList = resp.results;
+      this.movieCount = resp.total_results
       this.movieService.getGenres().subscribe(respG => {
         this.genres = respG.genres;
       })

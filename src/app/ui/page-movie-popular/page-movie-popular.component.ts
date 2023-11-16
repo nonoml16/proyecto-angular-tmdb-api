@@ -23,6 +23,7 @@ export class PageMoviePopularComponent implements OnInit {
   loadNewPage(): void {
     this.movieService.getPopularList(this.actualPage).subscribe(resp => {
       this.movieList = resp.results;
+
       this.movieService.getGenres().subscribe(respG => {
         this.genres = respG.genres;
       })
