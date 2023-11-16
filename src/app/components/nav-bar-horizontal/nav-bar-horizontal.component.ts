@@ -24,7 +24,6 @@ export class NavBarHorizontalComponent {
 
   isTrendingRouteActive(): boolean {
     return this.route.snapshot.firstChild?.routeConfig?.path === 'trending';
-
   }
 
 }

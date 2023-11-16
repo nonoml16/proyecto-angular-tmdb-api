@@ -26,6 +26,7 @@ import { PageTvShowTopRatedListComponent } from './ui/page-tv-show-top-rated-lis
 import { PageTvShowOnTheAirListComponent } from './ui/page-tv-show-on-the-air-list/page-tv-show-on-the-air-list.component';
 import { PageTvShowPopularListComponent } from './ui/page-tv-show-popular-list/page-tv-show-popular-list.component';
 import { PageDetailsTvShowComponent } from './ui/page-details-tv-show/page-details-tv-show.component';
+import { PageActorDetailComponent } from './ui/page-actor-detail/page-actor-detail.component';
 
 @NgModule({
   declarations: [
@@ -45,12 +46,13 @@ import { PageDetailsTvShowComponent } from './ui/page-details-tv-show/page-detai
     PageMoviePopularComponent,
     PageMovieNowPlayingComponent,
     PageMovieUpcomingComponent,
-    PageDetailsComponent,
     PageTvShowAirlingTodayListComponent,
     TvShowListComponent,
     PageMovieUpcomingComponent,
+    PageActorDetailComponent,
     PageTvShowTopRatedListComponent,
     PageTvShowOnTheAirListComponent,
+    PageTvShowAirlingTodayListComponent,
     PageTvShowPopularListComponent,
     PageDetailsTvShowComponent
   ],
