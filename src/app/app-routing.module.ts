@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PageHomeComponent } from './ui/page-home/page-home.component';
 import { AppComponent } from './app.component';
-import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { PageMoviePopularComponent } from './ui/page-movie-popular/page-movie-popular.component';
 import { PageDetailsComponent } from './ui/page-details/page-details.component';
 import { ActorListComponent } from './components/actor-list/actor-list.component';
@@ -10,7 +9,10 @@ import { PageTvShowAirlingTodayListComponent } from './ui/page-tv-show-airling-t
 import { PageMovieUpcomingComponent } from './ui/page-movie-upcoming/page-movie-upcoming.component';
 import { PageMovieTopRatedComponent } from './ui/page-movie-top-rated/page-movie-top-rated.component';
 import { PageMovieNowPlayingComponent } from './ui/page-movie-now-playing/page-movie-now-playing.component';
-import { PageActorDetailComponent } from './ui/page-actor-detail/page-actor-detail.component';
+import { PageTvShowTopRatedListComponent } from './ui/page-tv-show-top-rated-list/page-tv-show-top-rated-list.component';
+import { PageTvShowOnTheAirListComponent } from './ui/page-tv-show-on-the-air-list/page-tv-show-on-the-air-list.component';
+import { PageTvShowPopularListComponent } from './ui/page-tv-show-popular-list/page-tv-show-popular-list.component';
+import { PageDetailsTvShowComponent } from './ui/page-details-tv-show/page-details-tv-show.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },
@@ -40,10 +42,11 @@ const routes: Routes = [
   {
     path: 'tv-shows',
     children: [
+      { path: 'detail/:id', component: PageDetailsTvShowComponent },
       { path: 'airing-today', component: PageTvShowAirlingTodayListComponent },
-      { path: 'on-the-air', component: AppComponent },
-      { path: 'popular', component: AppComponent },
-      { path: 'top-rated', component: AppComponent }
+      { path: 'on-the-air', component: PageTvShowOnTheAirListComponent },
+      { path: 'popular', component: PageTvShowPopularListComponent },
+      { path: 'top-rated', component: PageTvShowTopRatedListComponent }
     ]
   },
   {
