@@ -19,16 +19,16 @@ export class PageMovieNowPlayingComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadNewPage();
-
   }
+
   loadNewPage(): void {
     this.movieService.getNowPlayingList(this.actualPage).subscribe(resp => {
       this.movieList = resp.results;
       this.movieCount = resp.total_results;
       this.movieService.getGenres().subscribe(respG => {
         this.genres = respG.genres;
-      })
-    })
+      });
+    });
   }
 
   getGenreNames(genreIds: number[]): string[] {

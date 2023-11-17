@@ -14,6 +14,9 @@ import { PageTvShowOnTheAirListComponent } from './ui/page-tv-show-on-the-air-li
 import { PageTvShowPopularListComponent } from './ui/page-tv-show-popular-list/page-tv-show-popular-list.component';
 import { PageDetailsTvShowComponent } from './ui/page-details-tv-show/page-details-tv-show.component';
 import { PageActorDetailComponent } from './ui/page-actor-detail/page-actor-detail.component';
+import { PageTrendingTvshowComponent } from './ui/page-trending-tvshow/page-trending-tvshow.component';
+import { PageTrendingMovieComponent } from './ui/page-trending-movie/page-trending-movie.component';
+import { PageTrendingActorsComponent } from './ui/page-trending-actors/page-trending-actors.component';
 
 const routes: Routes = [
   { path: 'home', component: AppComponent },
@@ -57,11 +60,10 @@ const routes: Routes = [
   },
   {
     path: 'trending',
-    component: AppComponent,
     children: [
-      { path: 'tv-shows', component: AppComponent },
-      { path: 'movies', component: AppComponent },
-      { path: 'actors', component: AppComponent }
+      { path: 'tv-shows', component: PageTrendingTvshowComponent },
+      { path: 'movies', component: PageTrendingMovieComponent },
+      { path: 'actors', component: PageTrendingActorsComponent }
     ]
   },
 
