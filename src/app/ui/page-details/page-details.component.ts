@@ -92,4 +92,34 @@ export class PageDetailsComponent implements OnInit {
       return undefined;
     }
   }
+
+  testDataDirector(director: String | null) {
+    if (director != null)
+      return director;
+    return "No Data"
+  }
+
+  testDataPopularity(number: number | null) {
+    if (number != null)
+      return number;
+    return "No Data"
+  }
+
+  testDataBirthDay(date: string | null) {
+    if (date != null)
+      return date;
+    return "No Data"
+  }
+
+  testDataPlaceOfBirth(place_of_birth: null) {
+    if (place_of_birth != null)
+      return place_of_birth;
+    return "No Data"
+  }
+
+  testDataBiography(biography: string | null) {
+    if (biography != null)
+      return biography;
+    return "This actor has no biography"
+  }
 }

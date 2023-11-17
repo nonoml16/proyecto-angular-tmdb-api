@@ -34,9 +34,10 @@ export class PageDetailsTvShowComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tvshowService.getTvShow(this.tvshowId).subscribe(resp => { 
+    this.tvshowService.getTvShow(this.tvshowId).subscribe(resp => {
       this.tvshow = resp;
-      this.seasons = this.tvshow.seasons; });
+      this.seasons = this.tvshow.seasons;
+    });
     this.tvshowService.getCredits(this.tvshowId).subscribe(resp => {
       this.cast = resp.cast;
       this.crew = resp.crew;
@@ -95,4 +96,23 @@ export class PageDetailsTvShowComponent implements OnInit {
       return undefined;
     }
   }
+
+  testDataDirector() {
+    if (this.getDirectorName()[0].name != null)
+      return this.getDirectorName()[0].name;
+    return "No Data"
+  }
+
+  testAdult(adult: Boolean) {
+    if (adult)
+      return "Yes";
+    return "No";
+  }
+
+  testLanguage(language: String | null): boolean {
+    if (language == null)
+      return false;
+    return true;
+  }
+
 }
