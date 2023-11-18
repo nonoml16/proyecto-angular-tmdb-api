@@ -11,6 +11,7 @@ export class ActorListComponent implements OnInit {
 
   constructor(private actorService: ActorService) { }
   actorList: Actor[] = [];
+  actorsFound: number = 0;
   actorCount!: number;
   currentPage = 1;
 
@@ -23,7 +24,18 @@ export class ActorListComponent implements OnInit {
       this.actorList = resp.results
       this.actorCount = resp.total_results;
     });
+  }
 
+  loadPageForName(event: any) {
+    let nameActor = event.target.value;
+    if (nameActor == '') {
+      this.loadNewPage();
+    } else {
+      this.actorService.getByName(nameActor, this.currentPage).subscribe(resp => {
+        this.actorList = resp.results;
+        this.actorsFound = resp.total_results;
+      });
+    }
   }
 
 }

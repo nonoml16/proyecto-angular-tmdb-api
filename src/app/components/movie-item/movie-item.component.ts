@@ -2,6 +2,7 @@
 import { Component, Input } from '@angular/core';
 import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Genre } from 'src/app/models/genre.interface';
+import { Cast } from 'src/app/models/actor-movie.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
 
 @Component({
@@ -11,14 +12,14 @@ import { Movie } from 'src/app/models/movie-list.interface';
 })
 export class MovieItemComponent {
 
-  @Input() movie!: Movie;
+  @Input() movie!: Movie | Cast;
   @Input() genres: Genre[] = [];
-  
-  urlImage():string {
+
+  urlImage(): string {
     return `https://image.tmdb.org/t/p/w440_and_h660_face${this.movie.poster_path}`;
   }
 
-  raiting():number{
+  raiting(): number {
     return this.movie.vote_average / 2;
   }
 
@@ -28,9 +29,9 @@ export class MovieItemComponent {
   }
 
   constructor(config: NgbRatingConfig) {
-		
-		config.max = 5;
-		config.readonly = true;
-	}
-  
+
+    config.max = 5;
+    config.readonly = true;
+  }
+
 }

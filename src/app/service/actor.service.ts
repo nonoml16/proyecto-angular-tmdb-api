@@ -4,6 +4,8 @@ import { ActorListResponse } from '../models/actor-list.interface';
 import { ActorDetailResponse } from '../models/actor-detail.interface';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
+import { MoviePersonResponse } from '../models/actor-movie.interface';
+import { TvShowsPersonResponse } from '../models/actor-tvshow.interface';
 
 const ACTOR_BASE_URL = 'person';
 
@@ -18,7 +20,19 @@ export class ActorService {
     return this.http.get<ActorListResponse>(`https://api.themoviedb.org/3/person/popular?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
   }
 
+  getByName(name: string, page: number): Observable<ActorListResponse> {
+    return this.http.get<ActorListResponse>(`${environment.apiBaseUrl}/search/person?api_key=${environment.apiKey}&query=${name}&page=${page}`);
+  }
+
   getById(id: number): Observable<ActorDetailResponse> {
     return this.http.get<ActorDetailResponse>(`${environment.apiBaseUrl}/${ACTOR_BASE_URL}/${id}?api_key=${environment.apiKey}`);
+  }
+
+  getMovies(id: number): Observable<MoviePersonResponse> {
+    return this.http.get<MoviePersonResponse>(`${environment.apiBaseUrl}/person/${id}/movie_credits?api_key=${environment.apiKey}`);
+  }
+
+  getTvShows(id: number): Observable<TvShowsPersonResponse> {
+    return this.http.get<TvShowsPersonResponse>(`${environment.apiBaseUrl}/person/${id}/tv_credits?api_key=${environment.apiKey}`);
   }
 }

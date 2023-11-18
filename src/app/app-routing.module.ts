@@ -13,6 +13,10 @@ import { PageTvShowTopRatedListComponent } from './ui/page-tv-show-top-rated-lis
 import { PageTvShowOnTheAirListComponent } from './ui/page-tv-show-on-the-air-list/page-tv-show-on-the-air-list.component';
 import { PageTvShowPopularListComponent } from './ui/page-tv-show-popular-list/page-tv-show-popular-list.component';
 import { PageDetailsTvShowComponent } from './ui/page-details-tv-show/page-details-tv-show.component';
+import { PageActorDetailComponent } from './ui/page-actor-detail/page-actor-detail.component';
+import { PageTrendingTvshowComponent } from './ui/page-trending-tvshow/page-trending-tvshow.component';
+import { PageTrendingMovieComponent } from './ui/page-trending-movie/page-trending-movie.component';
+import { PageTrendingActorsComponent } from './ui/page-trending-actors/page-trending-actors.component';
 
 const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
@@ -20,18 +24,34 @@ const routes: Routes = [
   {
     path: 'movies',
     children: [
-      { path: 'detail/:id', component: PageDetailsComponent },
       { path: 'now-playing', component: PageMovieNowPlayingComponent },
       { path: 'popular', component: PageMoviePopularComponent },
       { path: 'top-rated', component: PageMovieTopRatedComponent },
       { path: 'upcoming', component: PageMovieUpcomingComponent },
     ]
   },
+  {
+    path: 'movie',
+    children: [
+      { path: 'detail/:id', component: PageDetailsComponent }
+    ]
+  },
   { path: 'actors', component: ActorListComponent },
+  {
+    path: 'actor',
+    children: [
+      { path: 'detail/:id', component: PageActorDetailComponent }
+    ]
+  },
+  {
+    path: 'tv-show',
+    children: [
+      { path: 'detail/:id', component: PageDetailsTvShowComponent }
+    ]
+  },
   {
     path: 'tv-shows',
     children: [
-      { path: 'detail/:id', component: PageDetailsTvShowComponent },
       { path: 'airing-today', component: PageTvShowAirlingTodayListComponent },
       { path: 'on-the-air', component: PageTvShowOnTheAirListComponent },
       { path: 'popular', component: PageTvShowPopularListComponent },
@@ -40,11 +60,10 @@ const routes: Routes = [
   },
   {
     path: 'trending',
-    component: AppComponent,
     children: [
-      { path: 'tv-shows', component: AppComponent },
-      { path: 'movies', component: AppComponent },
-      { path: 'actors', component: AppComponent }
+      { path: 'tv-shows', component: PageTrendingTvshowComponent },
+      { path: 'movies', component: PageTrendingMovieComponent },
+      { path: 'actors', component: PageTrendingActorsComponent }
     ]
   },
 
