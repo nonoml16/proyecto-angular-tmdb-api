@@ -35,6 +35,10 @@ export class MovieService {
     return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/movie/popular?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
   }
 
+  getPopularListHome(): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/movie/popular?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+  }
+
   getMovieById(id: number): Observable<MovieDetailResponse> {
     return this.http.get<MovieDetailResponse>(`https://api.themoviedb.org/3/movie/${id}?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
@@ -43,12 +47,24 @@ export class MovieService {
     return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/upcoming?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
   }
 
+  getUpcomingListHome(): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/upcoming?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+  }
+
   getTopRatedList(page: number): Observable<MovieListResponse> {
     return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/top_rated?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
   }
 
+  getTopRatedListHome(): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/top_rated?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+  }
+
   getNowPlayingList(page: number): Observable<MovieListResponse> {
     return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/now_playing?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
+  }
+
+  getNowPlayingListHome(): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/now_playing?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 
   getListP(): Observable<MovieListResponse> {

@@ -19,7 +19,7 @@ import { PageTrendingMovieComponent } from './ui/page-trending-movie/page-trendi
 import { PageTrendingActorsComponent } from './ui/page-trending-actors/page-trending-actors.component';
 
 const routes: Routes = [
-  { path: 'home', component: AppComponent },
+  { path: 'home', component: PageHomeComponent },
   { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: 'movies',
