@@ -40,6 +40,10 @@ p {
     margin-left: 15px;
 }
 
+.media {
+    cursor: pointer;
+}
+
 .align-title {
     margin-left: 10px;
 }
