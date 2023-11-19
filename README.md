@@ -16,6 +16,10 @@ Las principales características de la aplicación incluyen:
 
 - Valoración: Los usuarios pueden calificar películas y series para compartir sus opiniones con la comunidad.
 
+### IMPORTANTE 
+
+Para que la valoración funcione hay que meterse al detalle de la película y *darle a f5 (actualizar página)* --> detalle a corregir
+
 - Listas Personalizadas: Los usuarios pueden crear listas personalizadas y agregar películas y series a estas listas para organizar su contenido de acuerdo a sus preferencias.
 
 - Trending: Los usuarios podrán visitar una sección llamada "Trending" donde pueden ver las tendencias del dia o de la semana en peliculas/series o actores.

@@ -9,6 +9,7 @@ import { MovieListRatedResponse } from '../models/movie-list-rated.interface';
 import { TvShowListRatedResponse } from '../models/tv-show-list-rated.interface';
 import { AddAccountResponse } from '../models/add-account.interface';
 import { FavoutireListResponse } from '../models/get-fav-movies.interface';
+import { AddWatchlistResponse } from '../models/add-watchlist.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -56,19 +57,36 @@ export class AccountService {
   }
 
   getRatedMovies(): Observable<MovieListRatedResponse> {
-    return this.http.get<MovieListRatedResponse>(`${environment.apiBaseUrl}/account/:account_id/rated/movies?session_id=${localStorage.getItem('session_id')}`, {
-      headers: {
-        'Authorization': `Bearer ${environment.tmdbToken}`
-      }
-    })
+    return this.http.get<MovieListRatedResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('account_id')}/rated/movies?&session_id=${localStorage.getItem('session_id')}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${environment.tmdbToken}`
+        }
+      });
   }
 
   getRatedTvShows(): Observable<TvShowListRatedResponse> {
-    return this.http.get<TvShowListRatedResponse>(`${environment.apiBaseUrl}/account/:account_id/rated/tv?session_id=${localStorage.getItem('session_id')}`, {
-      headers: {
-        'Authorization': `Bearer ${environment.tmdbToken}`
+    return this.http.get<TvShowListRatedResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('account_id')}/rated/tv?&session_id=${localStorage.getItem('session_id')}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${environment.tmdbToken}`
+        }
+      });
+  }
+
+  addWatchList(type: string, id: number, insert: boolean): Observable<AddWatchlistResponse> {
+    return this.http.post<AddWatchlistResponse>(`${environment.apiBaseUrl}/account/${localStorage.getItem('account_id')}/watchlist?session_id=${localStorage.getItem('session_id')}&api_key=${environment.apiKey}`,
+      {
+        media_type: type,
+        media_id: id,
+        watchlist: insert
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
-    })
+    );
   }
 
   addFavorite(type: String, id: number, favourite: boolean): Observable<AddAccountResponse> {

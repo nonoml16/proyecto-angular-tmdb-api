@@ -31,12 +31,22 @@ export class PageDetailsComponent implements OnInit {
   value: number = 0;
   favouriteMovies: Movie[] = [];
   isFavourite = false;
+  type = 'movie';
+  estaEnWatchlist!: boolean;
+
+
 
   constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private modalService: NgbModal, private accountService: AccountService) {
     this.movieId = this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {
+    this.accountService.getRatedMovies().subscribe(resp => {
+      if (resp.results.find(m => m.id == this.movieId)) {
+        this.value = resp.results.find(m => m.id == this.movieId)!.rating;
+        this.valorado = true;
+      }
+    });
     this.movieService.getMovie(this.movieId).subscribe(resp => {
       this.movie = resp
       this.movieService.getListVideoByIdMovie(this.movieId).subscribe(trailers => {
@@ -54,11 +64,12 @@ export class PageDetailsComponent implements OnInit {
         this.genres = respG.genres;
       });
     });
-    this.accountService.getRatedMovies().subscribe(resp => {
-      if (resp.results.find(m => m.id == this.movieId)) {
-        this.value = resp.results.find(m => m.id == this.movieId)!.rating;
-        this.valorado = true;
-      }
+    this.accountService.getWatchlistMovies().subscribe(resp => {
+      this.estaEnWatchlist = resp.results.map(m => m.id).includes(this.movieId);
+    });
+    this.accountService.getFavouritesMovies().subscribe(resp => {
+      this.favouriteMovies = resp.results;
+      this.buscarFav(); 
     });
     this.accountService.getFavouritesMovies().subscribe(resp => {
       this.favouriteMovies = resp.results;
@@ -123,14 +134,22 @@ export class PageDetailsComponent implements OnInit {
   }
 
   rateAMovie() {
-    this.movieService.rateForAMovieById(this.movieId, this.value).subscribe();
-    this.valorado = true;
+    if (this.value != 0) {
+      this.valorado = true;
+      this.movieService.rateForAMovieById(this.movieId, this.value).subscribe();
+    }
   }
   deleteRateMovie() {
     this.movieService.deleteRateByIdMovie(this.movieId).subscribe(() => {
       this.valorado = false;
       this.value = 0;
     });
+  }
+
+  addToWatchList() {
+    this.accountService.addWatchList(this.type, this.movieId, true).subscribe(resp => {
+    }
+    );
   }
 
   testDataDirector(director: String | null) {

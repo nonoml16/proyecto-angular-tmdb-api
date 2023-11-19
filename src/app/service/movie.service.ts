@@ -8,7 +8,7 @@ import { GenreResponse } from '../models/genre.interface';
 import { MovieCreditsResponse } from '../models/movie-credits.interface';
 import { TrailerListResponse } from '../models/trailer-list.interface';
 import { CreditsResponse } from '../models/credits-interface';
-import { StatusCodeResponse } from '../models/status-code.interface';
+import { RatingResponse } from '../models/rating.interface';
 
 const MOVIE_BASE_URL = 'movie';
 
@@ -92,12 +92,12 @@ export class MovieService {
     return this.http.get<CreditsResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/${id}/credits?api_key=${environment.apiKey}`);
   }
 
-  deleteRateByIdMovie(id: number): Observable<StatusCodeResponse> {
-    return this.http.delete<StatusCodeResponse>(`${environment.apiBaseUrl}/movie/${id}/rating?session_id=${localStorage.getItem('session_id')}&api_key=${environment.apiKey}`);
+  deleteRateByIdMovie(id: number): Observable<RatingResponse> {
+    return this.http.delete<RatingResponse>(`${environment.apiBaseUrl}/movie/${id}/rating?session_id=${localStorage.getItem('session_id')}&api_key=${environment.apiKey}`);
   }
 
-  rateForAMovieById(id: number, value: number): Observable<StatusCodeResponse> {
-    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/movie/${id}/rating?session_id=${localStorage.getItem('session_id')}`, {
+  rateForAMovieById(id: number, value: number): Observable<RatingResponse> {
+    return this.http.post<RatingResponse>(`${environment.apiBaseUrl}/movie/${id}/rating?session_id=${localStorage.getItem('session_id')}`, {
       value: value
     }, {
       headers: {

@@ -32,12 +32,20 @@ export class PageDetailsTvShowComponent implements OnInit {
   value: number = 0;
   favouriteTvShows: TvShow[] = [];
   isFavourite = false;
+  type = 'tv';
+  estaEnWatchlist!: boolean;
 
   constructor(private tvshowService: TvShowService, private sanitazer: DomSanitizer, private modalService: NgbModal, private accountService: AccountService) {
     this.tvshowId = this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {
+    this.accountService.getRatedTvShows().subscribe(resp => {
+      if (resp.results.find(m => m.id == this.tvshowId)) {
+        this.value = resp.results.find(m => m.id == this.tvshowId)!.rating;
+        this.valorado = true;
+      }
+    });
     this.tvshowService.getTvShow(this.tvshowId).subscribe(resp => {
       this.tvshow = resp;
       this.seasons = this.tvshow.seasons;
@@ -53,11 +61,12 @@ export class PageDetailsTvShowComponent implements OnInit {
         this.genres = respG.genres;
       });
     });
-    this.accountService.getRatedTvShows().subscribe(resp => {
-      if (resp.results.find(m => m.id == this.tvshowId)) {
-        this.value = resp.results.find(m => m.id == this.tvshowId)!.rating;
-        this.valorado = true;
-      }
+    this.accountService.getWatchlistMovies().subscribe(resp => {
+      this.estaEnWatchlist = resp.results.map(m => m.id).includes(this.tvshowId);
+    });
+    this.accountService.getFavouritesTvShows().subscribe(resp => {
+      this.favouriteTvShows = resp.results;
+      this.buscarFav(); 
     });
     this.accountService.getFavouritesTvShows().subscribe(resp => {
       this.favouriteTvShows = resp.results;
@@ -123,14 +132,22 @@ export class PageDetailsTvShowComponent implements OnInit {
   }
 
   rateATvShow() {
-    this.tvshowService.rateForATvShowById(this.tvshowId, this.value).subscribe();
-    this.valorado = true;
+    if (this.value != 0) {
+      this.tvshowService.rateForATvShowById(this.tvshowId, this.value).subscribe();
+      this.valorado = true;
+    }
   }
   deleteRateTvShow() {
     this.tvshowService.deleteRateByIdTvShow(this.tvshowId).subscribe(() => {
       this.valorado = false;
       this.value = 0;
     });
+  }
+
+  addToWatchList() {
+    this.accountService.addWatchList(this.type, this.tvshowId, true).subscribe(resp => {
+    }
+    );
   }
 
   testDataDirector() {
