@@ -1,12 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Genre } from 'src/app/models/genre.interface';
 import { Cast, MovieCreditsResponse } from 'src/app/models/movie-credits.interface';
 import { MovieDetailResponse } from 'src/app/models/movie-detail.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
 import { MovieService } from 'src/app/service/movie.service';
-import { Trailer, TrailerListResponse } from 'src/app/models/trailer-list.interface';
+import { Trailer } from 'src/app/models/trailer-list.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -23,8 +23,7 @@ export class PageDetailsComponent implements OnInit {
   selectedMovieCredits !: MovieCreditsResponse;
   genres: Genre[] = [];
   movieList: Movie[] = [];
-  trailerOfMovie!: Trailer;
-  trailerUrl: SafeResourceUrl | undefined;
+  trailerOfMovie !: Trailer;
   cast!: Cast[];
   crew !: Cast[];
 
@@ -33,7 +32,12 @@ export class PageDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.movieService.getMovie(this.movieId).subscribe(resp => { this.movie = resp });
+    this.movieService.getMovie(this.movieId).subscribe(resp => {
+      this.movie = resp
+      this.movieService.getListVideoByIdMovie(this.movieId).subscribe(trailers => {
+        this.trailerOfMovie = trailers.results[0];
+      });
+    });
     this.movieService.getCredits(this.movieId).subscribe(resp => {
       this.cast = resp.cast;
       this.crew = resp.crew;
@@ -68,9 +72,12 @@ export class PageDetailsComponent implements OnInit {
   }
 
   open(idmovie: number, content: any) {
-    this.movieService.getListVideoByIdMovie(idmovie).subscribe((trailers: TrailerListResponse) => {
+
+    this.movieService.getMovie(idmovie).subscribe(resp => {
+      this.movie = resp
+    });
+    this.movieService.getListVideoByIdMovie(idmovie).subscribe(trailers => {
       this.trailerOfMovie = trailers.results[0];
-      this.trailerUrl = this.getTrailerURL(this.trailerOfMovie);
       this.modalService.open(content);
     });
   }
@@ -83,14 +90,8 @@ export class PageDetailsComponent implements OnInit {
     return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${actor.profile_path}`;
   }
 
-  getTrailerURL(video: Trailer): SafeResourceUrl | undefined {
-    if (video?.site === 'YouTube') {
-      return this.sanitazer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.key}`);
-    } else if (video?.site === 'Vimeo') {
-      return this.sanitazer.bypassSecurityTrustResourceUrl(`https://player.vimeo.com/video/${video.key}`);
-    } else {
-      return undefined;
-    }
+  getVideoUrl(trailer: Trailer): any {
+    return this.sanitazer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${trailer.key}`);
   }
 
   testDataDirector(director: String | null) {

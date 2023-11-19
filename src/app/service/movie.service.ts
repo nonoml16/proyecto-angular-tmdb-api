@@ -96,7 +96,7 @@ export class MovieService {
   }
 
   getListVideoByIdMovie(id: number): Observable<TrailerListResponse> {
-    return this.http.get<TrailerListResponse>(`https://api.themoviedb.org/3/${id}/videos?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+    return this.http.get<TrailerListResponse>(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 
   getCredits(id: number): Observable<CreditsResponse> {
