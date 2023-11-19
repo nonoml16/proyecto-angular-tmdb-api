@@ -5,6 +5,10 @@ import { AccountDetailResponse } from '../models/account-detail.interface';
 import { Observable } from 'rxjs';
 import { StatusCodeResponse } from '../models/status-code.interface';
 import { ListRatedMoviesResponse } from '../models/list-ratedmovies.interface';
+import { MovieListResponse } from '../models/movie-list.interface';
+import { TvShowListResponse } from '../models/tv-show-list.interface';
+import { MovieListRatedResponse } from '../models/movie-list-rated.interface';
+import { TvShowListRatedResponse } from '../models/tv-show-list-rated.interface';
 
 @Injectable({
   providedIn: 'root'
