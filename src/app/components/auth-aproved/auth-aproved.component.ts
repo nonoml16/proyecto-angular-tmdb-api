@@ -20,14 +20,14 @@ import { AuthService } from 'src/app/service/auth.service';
   }
 }*/
 
-export class AuthAprovedComponent implements OnInit{
+export class AuthAprovedComponent implements OnInit {
 
-  constructor(private authService: AuthService, private accountService: AccountService, private router: Router){}
-  
+  constructor(private authService: AuthService, private accountService: AccountService, private router: Router) { }
+
   ngOnInit(): void {
     this.authService.createSession(localStorage.getItem('request_token')!).subscribe(resp => {
-      localStorage.setItem('session_id', resp.session_id);      
-      this.router.navigateByUrl('/profile');
+      localStorage.setItem('session_id', resp.session_id);
+      this.router.navigateByUrl('/home');
     })
   }
 }
