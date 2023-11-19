@@ -68,3 +68,13 @@ main {
     color: #00B9AE;
     border-bottom: 4px solid #00B9AE;
 }
+
+.boton-login {
+    border-radius: 40px;
+    background-color: #21242D;
+    color: white;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 12px;
+}

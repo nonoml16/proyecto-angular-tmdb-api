@@ -30,6 +30,8 @@ export class PageDetailsTvShowComponent implements OnInit {
   seasons: Season[] = [];
   valorado: boolean = false;
   value: number = 0;
+  favouriteTvShows: TvShow[] = [];
+  isFavourite = false;
   type = 'tv';
   estaEnWatchlist!: boolean;
 
@@ -62,6 +64,14 @@ export class PageDetailsTvShowComponent implements OnInit {
     this.accountService.getWatchlistMovies().subscribe(resp => {
       this.estaEnWatchlist = resp.results.map(m => m.id).includes(this.tvshowId);
     });
+    this.accountService.getFavouritesTvShows().subscribe(resp => {
+      this.favouriteTvShows = resp.results;
+      this.buscarFav(); 
+    });
+    this.accountService.getFavouritesTvShows().subscribe(resp => {
+      this.favouriteTvShows = resp.results;
+      this.buscarFav(); 
+    });
   }
 
   urlBgImage(): string {
@@ -92,6 +102,20 @@ export class PageDetailsTvShowComponent implements OnInit {
     this.tvshowService.getListTvShowByIdMovie(idtvshow).subscribe(trailers => {
       this.trailerOfTvShow = trailers.results[0];
       this.modalService.open(content);
+    });
+  }
+
+  agregarFav() {
+    this.accountService.addFavorite('tv', this.tvshowId, true).subscribe(() => {
+      this.buscarFav();
+    });
+  }
+
+  buscarFav(){
+    this.accountService.getFavouritesTvShows().subscribe(resp => {
+      this.favouriteTvShows = resp.results;
+      const foundTvShow = this.favouriteTvShows.find(currentTvShow => currentTvShow.id === this.tvshowId);
+      this.isFavourite = foundTvShow !== undefined;
     });
   }
 

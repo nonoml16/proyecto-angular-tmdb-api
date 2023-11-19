@@ -29,6 +29,8 @@ export class PageDetailsComponent implements OnInit {
   crew !: Cast[];
   valorado: boolean = false;
   value: number = 0;
+  favouriteMovies: Movie[] = [];
+  isFavourite = false;
   type = 'movie';
   estaEnWatchlist!: boolean;
 
@@ -65,6 +67,14 @@ export class PageDetailsComponent implements OnInit {
     this.accountService.getWatchlistMovies().subscribe(resp => {
       this.estaEnWatchlist = resp.results.map(m => m.id).includes(this.movieId);
     });
+    this.accountService.getFavouritesMovies().subscribe(resp => {
+      this.favouriteMovies = resp.results;
+      this.buscarFav(); 
+    });
+    this.accountService.getFavouritesMovies().subscribe(resp => {
+      this.favouriteMovies = resp.results;
+      this.buscarFav(); 
+    });
   }
 
   urlBgImage(): string {
@@ -94,6 +104,20 @@ export class PageDetailsComponent implements OnInit {
     this.movieService.getListVideoByIdMovie(idmovie).subscribe(trailers => {
       this.trailerOfMovie = trailers.results[0];
       this.modalService.open(content);
+    });
+  }
+
+  agregarFav() {
+    this.accountService.addFavorite('movie', this.movieId, true).subscribe(() => {
+      this.buscarFav();
+    });
+  }
+
+  buscarFav(){
+    this.accountService.getFavouritesMovies().subscribe(resp => {
+      this.favouriteMovies = resp.results;
+      const foundMovie = this.favouriteMovies.find(currentMovie => currentMovie.id === this.movieId);
+      this.isFavourite = foundMovie !== undefined;
     });
   }
 
