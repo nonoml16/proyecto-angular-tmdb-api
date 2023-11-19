@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
+import { AccountDetailResponse } from '../models/account-detail.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +11,11 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  getAccountDetails() {
-    let sessionId = localStorage.getItem('SESSION_ID');
-    return this.http.get(`${environment.apiBaseUrl}/account?session_id=${sessionId}`,
-      {
-        headers: {
-          'Authorization': `Bearer ${environment.tmdbToken}`
-        }
-      });
+  getAccountDetails(): Observable<AccountDetailResponse>{
+    return this.http.get<AccountDetailResponse>(`${environment.apiBaseUrl}/account?session_id=${localStorage.getItem('session_id')}`, {
+       headers: {
+        'Authorization': `Bearer ${environment.tmdbToken}`
+      }
+    })
   }
 }

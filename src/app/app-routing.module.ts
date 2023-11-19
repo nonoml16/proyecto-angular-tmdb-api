@@ -21,8 +21,8 @@ import { AuthAprovedComponent } from './components/auth-aproved/auth-aproved.com
 
 const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
-  { path: '', pathMatch: 'full', redirectTo: '/home' },
   { path: 'approved', component: AuthAprovedComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/home' },
   {
     path: 'movies',
     children: [

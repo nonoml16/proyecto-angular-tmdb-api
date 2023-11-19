@@ -55,6 +55,6 @@ export class TvShowService {
   }
 
   getListTvShowByIdMovie(id: number): Observable<TrailerListResponse> {
-    return this.http.get<TrailerListResponse>(`${environment.apiBaseUrl}/${id}/videos?api_key=${environment.apiKey}`);
+    return this.http.get<TrailerListResponse>(`${environment.apiBaseUrl}/tv/${id}/videos?api_key=${environment.apiKey}`);
   }
 }

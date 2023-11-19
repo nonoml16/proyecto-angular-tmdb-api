@@ -52,15 +52,14 @@
         </ul>
         <div class="nav-item d-flex ms-auto">
             <div>
-                <ng-container *ngIf="isLoggedIn(); else usuarioIcono">
+                <ng-template [ngIf]="!isLoggedIn">
+                    <button type="button" (click)="doLogin()">Log In</button>
+                  </ng-template>
+                <ng-template [ngIf]="isLoggedIn">
                   <a class="nav-link" [routerLink]="['/perfil']">
-                    User
-                    <img [src]="avatarUrl" alt="Profile" width="30" height="30" class="rounded-circle">
+                    <img [src]="getImgAvatar()" alt="Profile" width="30" height="30" class="rounded-circle">
                     {{ username }}
                   </a>
-                </ng-container>
-                <ng-template #usuarioIcono>
-                  <button [routerLink]="['/approved']" (click)="doLogin()">Log In</button>
                 </ng-template>
               </div>
         </div>
