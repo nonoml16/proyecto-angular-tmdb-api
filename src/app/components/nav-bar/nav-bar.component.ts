@@ -1,14 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AccountService } from 'src/app/service/account.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
-export class NavBarComponent {
+export class NavBarComponent implements OnInit{
+  isLoggedIn: boolean = false;
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private accountService: AccountService) { }
+  ngOnInit(): void {
+    this.accountService.getAccountDetails().subscribe(resp => {
+      if (resp != null) {
+        this.isLoggedIn = true;
+      }
+    })
+  }
+
 
   isMoviesRouteActive(): boolean {
     return this.route.snapshot.firstChild?.routeConfig?.path === 'movies';

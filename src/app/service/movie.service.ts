@@ -18,73 +18,60 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
+  getPopularList(page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/popular?api_key=${environment.apiKey}&&page=${page}`);
+  }
 
-  /*getListP(): Observable<MovieListResponse> {
+  getPopularListHome(): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/popular?api_key=${environment.apiKey}`);
+  }
+
+  getMovieById(id: number): Observable<MovieDetailResponse> {
+    return this.http.get<MovieDetailResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/${id}?api_key=${environment.apiKey}`);
+  }
+
+  getUpcomingList(page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/upcoming?api_key=${environment.apiKey}&&page=${page}`);
+  }
+
+  getUpcomingListHome(): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/upcoming?api_key=${environment.apiKey}`);
+  }
+
+  getTopRatedList(page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/top_rated?api_key=${environment.apiKey}&&page=${page}`);
+  }
+
+  getTopRatedListHome(): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/top_rated?api_key=${environment.apiKey}`);
+  }
+
+  getNowPlayingList(page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/now_playing?api_key=${environment.apiKey}&&page=${page}`);
+  }
+
+  getNowPlayingListHome(): Observable<MovieListResponse> {
     return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/now_playing?api_key=${environment.apiKey}`);
   }
 
-  getList(page:number): Observable<MovieListResponse> {
+  getListP(): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/now_playing?api_key=${environment.apiKey}`);
+  }
+
+  getGenres(): Observable<GenreResponse> {
+    return this.http.get<GenreResponse>(`${environment.apiBaseUrl}/genre/movie/list?api_key=${environment.apiKey}`);
+  }
+
+  getList(page: number): Observable<MovieListResponse> {
     return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/now_playing?api_key=${environment.apiKey}&&page=${page}`);
   }
 
   getMovie(id: number): Observable<MovieDetailResponse> {
     return this.http.get<MovieDetailResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/${id}?api_key=${environment.apiKey}`);
-  }*/
-
-  getPopularList(page: number): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/movie/popular?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
-  }
-
-  getPopularListHome(): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/movie/popular?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
-  }
-
-  getMovieById(id: number): Observable<MovieDetailResponse> {
-    return this.http.get<MovieDetailResponse>(`https://api.themoviedb.org/3/movie/${id}?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
-  }
-
-  getUpcomingList(page: number): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/upcoming?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
-  }
-
-  getUpcomingListHome(): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/upcoming?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
-  }
-
-  getTopRatedList(page: number): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/top_rated?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
-  }
-
-  getTopRatedListHome(): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/top_rated?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
-  }
-
-  getNowPlayingList(page: number): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/now_playing?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
-  }
-
-  getNowPlayingListHome(): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/now_playing?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
-  }
-
-  getListP(): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/now_playing?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
-  }
-
-  getGenres(): Observable<GenreResponse> {
-    return this.http.get<GenreResponse>(`https://api.themoviedb.org/3/genre/movie/list?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
-  }
-
-  getList(page: number): Observable<MovieListResponse> {
-    return this.http.get<MovieListResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/now_playing?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
-  }
-
-  getMovie(id: number): Observable<MovieDetailResponse> {
-    return this.http.get<MovieDetailResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/${id}?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 
   getMovieCredits(id: number): Observable<MovieCreditsResponse> {
-    return this.http.get<MovieCreditsResponse>(`https://api.themoviedb.org/3/${MOVIE_BASE_URL}/${id}/credits?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+    return this.http.get<MovieCreditsResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/${id}/credits?api_key=${environment.apiKey}`);
   }
 
   getByGenreAndPage(id: number, page: number): Observable<MovieListResponse> {
@@ -99,7 +86,8 @@ export class MovieService {
     return this.http.get<TrailerListResponse>(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 
+
   getCredits(id: number): Observable<CreditsResponse> {
-    return this.http.get<CreditsResponse>(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+    return this.http.get<CreditsResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/${id}/credits?api_key=${environment.apiKey}`);
   }
 }

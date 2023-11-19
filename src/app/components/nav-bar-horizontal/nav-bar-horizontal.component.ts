@@ -1,14 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AccountService } from 'src/app/service/account.service';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-nav-bar-horizontal',
   templateUrl: './nav-bar-horizontal.component.html',
   styleUrls: ['./nav-bar-horizontal.component.css']
 })
-export class NavBarHorizontalComponent {
+export class NavBarHorizontalComponent implements OnInit{
+  isLoggedIn: boolean = false;
+  avatarPath: string = '';
+  username: string = '';
 
-  constructor(private route: ActivatedRoute) { }
+
+  constructor(private route: ActivatedRoute, private authService: AuthService, private accountService: AccountService) { }
+  ngOnInit(): void {
+    this.accountService.getAccountDetails().subscribe(resp => {
+      if (resp != null) {
+        this.isLoggedIn = true;
+        this.avatarPath = resp.avatar.tmdb.avatar_path;
+        this.username = resp.username;
+      }
+    })
+  }
+
+  doLogin() {
+    this.authService.getRequestToken().subscribe(resp => {
+      localStorage.setItem('request_token', resp.request_token);
+      window.location.href = `https://www.themoviedb.org/authenticate/${localStorage.getItem('request_token')}?redirect_to=http://localhost:4200/approved`;
+    })
+  }
+
+  getImgAvatar() {
+    if (this.avatarPath != null) {
+      return `https://image.tmdb.org/t/p/w500${this.avatarPath}`;
+    }else {
+      return 'https://icon-library.com/images/my-profile-icon-png/my-profile-icon-png-22.jpg'
+    }
+  }
 
   isMoviesRouteActive(): boolean {
     return this.route.snapshot.firstChild?.routeConfig?.path === 'movies';
@@ -25,5 +55,6 @@ export class NavBarHorizontalComponent {
   isTrendingRouteActive(): boolean {
     return this.route.snapshot.firstChild?.routeConfig?.path === 'trending';
   }
+
 
 }

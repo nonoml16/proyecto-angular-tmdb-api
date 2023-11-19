@@ -18,36 +18,36 @@ export class TvShowService {
 
   constructor(private http: HttpClient) { }
 
-  getListAiringTday(page: number): Observable<TvShowListResponse> {
-    return this.http.get<TvShowListResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/airing_today?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
+  getListAiringTday(page:number): Observable<TvShowListResponse> {
+    return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/airing_today?api_key=${environment.apiKey}&&page=${page}`);
   }
 
-  getListTopRated(page: number): Observable<TvShowListResponse> {
-    return this.http.get<TvShowListResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/top_rated?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
+  getListTopRated(page:number): Observable<TvShowListResponse> {
+    return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/top_rated?api_key=${environment.apiKey}&&page=${page}`);
   }
 
-  getListOnTheAir(page: number): Observable<TvShowListResponse> {
-    return this.http.get<TvShowListResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/on_the_air?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
+  getListOnTheAir(page:number): Observable<TvShowListResponse> {
+    return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/on_the_air?api_key=${environment.apiKey}&&page=${page}`);
   }
 
-  getListPopular(page: number): Observable<TvShowListResponse> {
-    return this.http.get<TvShowListResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/popular?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
+  getListPopular(page:number): Observable<TvShowListResponse> {
+    return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/popular?api_key=${environment.apiKey}&&page=${page}`);
   }
 
   getTvShow(id: number): Observable<TvShowDetailResponse> {
-    return this.http.get<TvShowDetailResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/${id}?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+    return this.http.get<TvShowDetailResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/${id}?api_key=${environment.apiKey}`);
   }
 
   getListNoPage(): Observable<TvShowListResponse> {
-    return this.http.get<TvShowListResponse>(`https://api.themoviedb.org/3/${TV_SHOW_BASE_URL}/popular?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+    return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/popular?api_key=${environment.apiKey}`);
   }
 
   getGenres(): Observable<GenreResponse> {
-    return this.http.get<GenreResponse>(`https://api.themoviedb.org/3/genre/tv/list?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+    return this.http.get<GenreResponse>(`${environment.apiBaseUrl}/genre/${TV_SHOW_BASE_URL}/list?api_key=${environment.apiKey}`);
   }
 
   getCredits(id: number): Observable<TvShowCreditsResponse> {
-    return this.http.get<CreditsResponse>(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+    return this.http.get<CreditsResponse>(`${environment.apiBaseUrl}/tv/${id}/credits?api_key=${environment.apiKey}`);
   }
 
   getByName(name: string, page: number): Observable<TvShowListResponse> {
@@ -55,6 +55,6 @@ export class TvShowService {
   }
 
   getListTvShowByIdMovie(id: number): Observable<TrailerListResponse> {
-    return this.http.get<TrailerListResponse>(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+    return this.http.get<TrailerListResponse>(`${environment.apiBaseUrl}/tv/${id}/videos?api_key=${environment.apiKey}`);
   }
 }
