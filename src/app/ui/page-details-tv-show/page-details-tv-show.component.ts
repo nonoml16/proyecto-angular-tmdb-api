@@ -30,6 +30,8 @@ export class PageDetailsTvShowComponent implements OnInit {
   seasons: Season[] = [];
   valorado: boolean = false;
   value: number = 0;
+  favouriteTvShows: TvShow[] = [];
+  isFavourite = false;
 
   constructor(private tvshowService: TvShowService, private sanitazer: DomSanitizer, private modalService: NgbModal, private accountService: AccountService) {
     this.tvshowId = this.route.snapshot.params['id'];
@@ -56,6 +58,10 @@ export class PageDetailsTvShowComponent implements OnInit {
         this.value = resp.results.find(m => m.id == this.tvshowId)!.rating;
         this.valorado = true;
       }
+    });
+    this.accountService.getFavouritesTvShows().subscribe(resp => {
+      this.favouriteTvShows = resp.results;
+      this.buscarFav(); 
     });
   }
 
@@ -87,6 +93,20 @@ export class PageDetailsTvShowComponent implements OnInit {
     this.tvshowService.getListTvShowByIdMovie(idtvshow).subscribe(trailers => {
       this.trailerOfTvShow = trailers.results[0];
       this.modalService.open(content);
+    });
+  }
+
+  agregarFav() {
+    this.accountService.addFavorite('tv', this.tvshowId, true).subscribe(() => {
+      this.buscarFav();
+    });
+  }
+
+  buscarFav(){
+    this.accountService.getFavouritesTvShows().subscribe(resp => {
+      this.favouriteTvShows = resp.results;
+      const foundTvShow = this.favouriteTvShows.find(currentTvShow => currentTvShow.id === this.tvshowId);
+      this.isFavourite = foundTvShow !== undefined;
     });
   }
 

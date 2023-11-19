@@ -29,6 +29,8 @@ export class PageDetailsComponent implements OnInit {
   crew !: Cast[];
   valorado: boolean = false;
   value: number = 0;
+  favouriteMovies: Movie[] = [];
+  isFavourite = false;
 
   constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private modalService: NgbModal, private accountService: AccountService) {
     this.movieId = this.route.snapshot.params['id'];
@@ -57,6 +59,10 @@ export class PageDetailsComponent implements OnInit {
         this.value = resp.results.find(m => m.id == this.movieId)!.rating;
         this.valorado = true;
       }
+    });
+    this.accountService.getFavouritesMovies().subscribe(resp => {
+      this.favouriteMovies = resp.results;
+      this.buscarFav(); 
     });
   }
 
@@ -87,6 +93,20 @@ export class PageDetailsComponent implements OnInit {
     this.movieService.getListVideoByIdMovie(idmovie).subscribe(trailers => {
       this.trailerOfMovie = trailers.results[0];
       this.modalService.open(content);
+    });
+  }
+
+  agregarFav() {
+    this.accountService.addFavorite('movie', this.movieId, true).subscribe(() => {
+      this.buscarFav();
+    });
+  }
+
+  buscarFav(){
+    this.accountService.getFavouritesMovies().subscribe(resp => {
+      this.favouriteMovies = resp.results;
+      const foundMovie = this.favouriteMovies.find(currentMovie => currentMovie.id === this.movieId);
+      this.isFavourite = foundMovie !== undefined;
     });
   }
 

@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
 import { AccountDetailResponse } from '../models/account-detail.interface';
 import { Observable } from 'rxjs';
-import { StatusCodeResponse } from '../models/status-code.interface';
-import { ListRatedMoviesResponse } from '../models/list-ratedmovies.interface';
 import { MovieListResponse } from '../models/movie-list.interface';
 import { TvShowListResponse } from '../models/tv-show-list.interface';
 import { MovieListRatedResponse } from '../models/movie-list-rated.interface';
 import { TvShowListRatedResponse } from '../models/tv-show-list-rated.interface';
+import { AddAccountResponse } from '../models/add-account.interface';
+import { FavoutireListResponse } from '../models/get-fav-movies.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -69,5 +69,33 @@ export class AccountService {
         'Authorization': `Bearer ${environment.tmdbToken}`
       }
     })
+  }
+
+  addFavorite(type: String, id: number, favourite: boolean): Observable<AddAccountResponse> {
+    console.log(type);
+    console.log(id);
+    console.log(favourite);
+    return this.http.post<AddAccountResponse>(`${environment.apiBaseUrl}/account/:account_id/favorite?session_id=${localStorage.getItem('session_id')}&api_key=${environment.apiKey}`,
+      {
+        "media_type": type,
+        "media_id": id,
+        "favorite": favourite
+      },
+      {
+        headers: {
+          'content-type': 'application/json'
+        }
+      }
+    );
+  }
+
+  getFavSerie(): Observable<FavoutireListResponse> {
+    return this.http.get<FavoutireListResponse>(`${environment.apiBaseUrl}/account/:account_id/favorite/movie?session_id=${localStorage.getItem('session_id')}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${environment.tmdbToken}`
+        }
+      }
+    );
   }
 }

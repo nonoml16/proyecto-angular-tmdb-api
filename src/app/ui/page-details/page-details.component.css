@@ -170,3 +170,8 @@ button.btn-danger {
     margin-left: 37%;
     margin-top: 5px;
 }
+
+.favorito {
+    fill: #FC502C;
+    background-color: red;
+  }
