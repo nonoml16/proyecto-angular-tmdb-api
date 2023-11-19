@@ -55,6 +55,6 @@ export class TvShowService {
   }
 
   getListTvShowByIdMovie(id: number): Observable<TrailerListResponse> {
-    return this.http.get<TrailerListResponse>(`https://api.themoviedb.org/3/${id}/videos?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
+    return this.http.get<TrailerListResponse>(`https://api.themoviedb.org/3/tv/${id}/videos?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc`);
   }
 }
