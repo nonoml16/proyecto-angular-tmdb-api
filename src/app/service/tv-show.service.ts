@@ -8,7 +8,7 @@ import { GenreResponse } from '../models/genre.interface';
 import { CreditsResponse } from '../models/credits-interface';
 import { TvShowCreditsResponse } from '../models/tv-show-credits.interface';
 import { TrailerListResponse } from '../models/trailer-list.interface';
-import { StatusCodeResponse } from '../models/status-code.interface';
+import { RatingResponse } from '../models/rating.interface';
 
 const TV_SHOW_BASE_URL = 'tv';
 
@@ -59,12 +59,12 @@ export class TvShowService {
     return this.http.get<TrailerListResponse>(`${environment.apiBaseUrl}/tv/${id}/videos?api_key=${environment.apiKey}`);
   }
 
-  deleteRateByIdTvShow(id: number): Observable<StatusCodeResponse> {
-    return this.http.delete<StatusCodeResponse>(`${environment.apiBaseUrl}/tv/${id}/rating?session_id=${localStorage.getItem('session_id')}&api_key=${environment.apiKey}`);
+  deleteRateByIdTvShow(id: number): Observable<RatingResponse> {
+    return this.http.delete<RatingResponse>(`${environment.apiBaseUrl}/tv/${id}/rating?session_id=${localStorage.getItem('session_id')}&api_key=${environment.apiKey}`);
   }
 
-  rateForATvShowById(id: number, value: number): Observable<StatusCodeResponse> {
-    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/tv/${id}/rating?session_id=${localStorage.getItem('session_id')}`, {
+  rateForATvShowById(id: number, value: number): Observable<RatingResponse> {
+    return this.http.post<RatingResponse>(`${environment.apiBaseUrl}/tv/${id}/rating?session_id=${localStorage.getItem('session_id')}`, {
       value: value
     }, {
       headers: {

@@ -17,10 +17,18 @@
 }
 
 .titulo h1 {
-    font-size: 64px;
+    font-size: 40px;
     font-weight: bold;
-    margin-top: 260px;
+    margin-top: 130px;
     margin-bottom: 15px;
+    margin-left: 100px;
+}
+
+h2 {
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    margin-left: 100px;
 }
 
 .titulo span {
@@ -46,6 +54,7 @@
 
 .reparto {
     width: 1396px;
+    margin-bottom: 70px;
 }
 
 .card {
@@ -106,4 +115,8 @@
 ::-webkit-scrollbar-thumb {
     background: rgba(249, 249, 249, 0.2);
     border-radius: 10px;
+}
+
+.row {
+    margin-bottom: 120px;
 }
