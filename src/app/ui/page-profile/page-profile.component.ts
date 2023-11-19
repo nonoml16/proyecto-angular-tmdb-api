@@ -14,6 +14,7 @@ import { AccountService } from 'src/app/service/account.service';
 export class PageProfileComponent implements OnInit {
   username: string = '';
   avatarPath: string = '';
+  country: string = '';
   tvshowWatchlist: TvShow[] = [];
   movieWatchlist: Movie[] = [];
   movieFavourites: Movie[] = [];
@@ -28,6 +29,7 @@ export class PageProfileComponent implements OnInit {
       if (resp != null) {
         this.avatarPath = resp.avatar.tmdb.avatar_path;
         this.username = resp.username;
+        this.country = resp.iso_3166_1
       }
     });
     this.accountService.getWatchlistMovies().subscribe(resp => {
