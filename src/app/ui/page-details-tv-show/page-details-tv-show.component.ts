@@ -1,5 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Genre } from 'src/app/models/genre.interface';
@@ -23,8 +23,7 @@ export class PageDetailsTvShowComponent implements OnInit {
   selectedTvShowCredits !: TvShowCreditsResponse;
   genres: Genre[] = [];
   tvshowList: TvShow[] = [];
-  trailerOfMovie!: Trailer;
-  trailerUrl: SafeResourceUrl | undefined;
+  trailerOfTvShow!: Trailer;
   cast!: Cast[];
   crew !: Cast[];
   seasons: Season[] = [];
@@ -34,9 +33,10 @@ export class PageDetailsTvShowComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tvshowService.getTvShow(this.tvshowId).subscribe(resp => { 
+    this.tvshowService.getTvShow(this.tvshowId).subscribe(resp => {
       this.tvshow = resp;
-      this.seasons = this.tvshow.seasons; });
+      this.seasons = this.tvshow.seasons;
+    });
     this.tvshowService.getCredits(this.tvshowId).subscribe(resp => {
       this.cast = resp.cast;
       this.crew = resp.crew;
@@ -70,10 +70,13 @@ export class PageDetailsTvShowComponent implements OnInit {
     return this.tvshow.genres.map(genre => genre.name).join(', ');
   }
 
-  open(idmovie: number, content: any) {
-    this.tvshowService.getListTvShowByIdMovie(idmovie).subscribe((trailers: TrailerListResponse) => {
-      this.trailerOfMovie = trailers.results[0];
-      this.trailerUrl = this.getTrailerURL(this.trailerOfMovie);
+  open(idtvshow: number, content: any) {
+
+    this.tvshowService.getTvShow(idtvshow).subscribe(resp => {
+      this.tvshow = resp
+    });
+    this.tvshowService.getListTvShowByIdMovie(idtvshow).subscribe(trailers => {
+      this.trailerOfTvShow = trailers.results[0];
       this.modalService.open(content);
     });
   }
@@ -86,13 +89,26 @@ export class PageDetailsTvShowComponent implements OnInit {
     return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2/${actor.profile_path}`;
   }
 
-  getTrailerURL(video: Trailer): SafeResourceUrl | undefined {
-    if (video?.site === 'YouTube') {
-      return this.sanitazer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${video.key}`);
-    } else if (video?.site === 'Vimeo') {
-      return this.sanitazer.bypassSecurityTrustResourceUrl(`https://player.vimeo.com/video/${video.key}`);
-    } else {
-      return undefined;
-    }
+  getVideoUrl(trailer: Trailer): any {
+    return this.sanitazer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${trailer.key}`);
   }
+
+  testDataDirector() {
+    if (this.getDirectorName()[0].name != null)
+      return this.getDirectorName()[0].name;
+    return "No Data"
+  }
+
+  testAdult(adult: Boolean) {
+    if (adult)
+      return "Yes";
+    return "No";
+  }
+
+  testLanguage(language: String | null): boolean {
+    if (language == null)
+      return false;
+    return true;
+  }
+
 }

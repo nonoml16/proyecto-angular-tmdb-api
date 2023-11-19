@@ -37,7 +37,7 @@ export class TvShowService {
   getTvShow(id: number): Observable<TvShowDetailResponse> {
     return this.http.get<TvShowDetailResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/${id}?api_key=${environment.apiKey}`);
   }
-  
+
   getListNoPage(): Observable<TvShowListResponse> {
     return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/popular?api_key=${environment.apiKey}`);
   }
@@ -48,6 +48,14 @@ export class TvShowService {
 
   getCredits(id: number): Observable<TvShowCreditsResponse> {
     return this.http.get<CreditsResponse>(`${environment.apiBaseUrl}/tv/${id}/credits?api_key=${environment.apiKey}`);
+  }
+
+  getByName(name: string, page: number): Observable<TvShowListResponse> {
+    return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/search/tv?api_key=${environment.apiKey}&query=${name}&&page=${page}`);
+  }
+
+  getByName(name: string, page: number): Observable<TvShowListResponse> {
+    return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/search/tv?api_key=${environment.apiKey}&query=${name}&&page=${page}`);
   }
 
   getListTvShowByIdMovie(id: number): Observable<TrailerListResponse> {

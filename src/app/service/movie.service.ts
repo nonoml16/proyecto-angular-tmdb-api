@@ -74,6 +74,22 @@ export class MovieService {
     return this.http.get<MovieCreditsResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/${id}/credits?api_key=${environment.apiKey}`);
   }
 
+  getByGenreAndPage(id: number, page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/discover/movie?api_key=${environment.apiKey}&with_genres=${id}&&page=${page}`)
+  }
+
+  getByName(name: string, page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/search/movie?api_key=${environment.apiKey}&query=${name}&&page=${page}`);
+  }
+
+  getByGenreAndPage(id: number, page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/discover/movie?api_key=${environment.apiKey}&with_genres=${id}&&page=${page}`)
+  }
+
+  getByName(name: string, page: number): Observable<MovieListResponse> {
+    return this.http.get<MovieListResponse>(`${environment.apiBaseUrl}/search/movie?api_key=${environment.apiKey}&query=${name}&&page=${page}`);
+  }
+
   getListVideoByIdMovie(id: number): Observable<TrailerListResponse> {
     return this.http.get<TrailerListResponse>(`${environment.apiBaseUrl}/${id}/videos?api_key=${environment.apiKey}`);
   }

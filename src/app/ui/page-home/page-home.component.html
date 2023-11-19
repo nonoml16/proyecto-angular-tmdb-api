@@ -1,15 +1,16 @@
 <div class="container">
     <div class="carousel-container">
-        <ngb-carousel *ngIf="images">
+        <ngb-carousel *ngIf="images" [interval]="2750">
             <ng-template ngFor let-image [ngForOf]="images">
-            <ng-template ngbSlide>
-                <div class="picsum-img-wrapper">
-                <img [src]="image.backdrop_path ? 'https://image.tmdb.org/t/p/original/' + image.backdrop_path : 'https://via.placeholder.com/150'" alt="Movie backdrop" />
-                <div class="carousel-caption">
-                    <h3>{{ image.title }}</h3>
-                </div>
-                </div>
-            </ng-template>
+                <ng-template ngbSlide>
+                    <div class="picsum-img-wrapper" [routerLink]="['/movie/detail/', image.id]">
+                        <img [src]="image.backdrop_path ? 'https://image.tmdb.org/t/p/original/' + image.backdrop_path : 'https://via.placeholder.com/150'"
+                            alt="Movie backdrop" />
+                        <div class="carousel-caption">
+                            <h3>{{ image.title }}</h3>
+                        </div>
+                    </div>
+                </ng-template>
             </ng-template>
         </ngb-carousel>
     </div>

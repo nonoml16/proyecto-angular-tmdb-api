@@ -38,4 +38,34 @@ export class PageActorDetailComponent implements OnInit {
   getImageMovie(profile_path: string | null): string {
     return `https://www.themoviedb.org/t/p/w300_and_h450_bestv2${profile_path}`;
   }
+
+  testDataKnownForDepartment(known_for_department: String | null) {
+    if (known_for_department != null)
+      return known_for_department;
+    return "No Data"
+  }
+
+  testDataPopularity(number: number | null) {
+    if (number != null)
+      return number;
+    return "No Data"
+  }
+
+  testDataBirthDay(date: string | null) {
+    if (date != null)
+      return date;
+    return "No Data"
+  }
+
+  testDataPlaceOfBirth(place_of_birth: null) {
+    if (place_of_birth != null)
+      return place_of_birth;
+    return "No Data"
+  }
+
+  testDataBiography(biography: string | null) {
+    if (biography != null)
+      return biography;
+    return "This actor has no biography"
+  }
 }
