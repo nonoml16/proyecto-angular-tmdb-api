@@ -92,11 +92,20 @@ export class MovieService {
     return this.http.get<CreditsResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/${id}/credits?api_key=${environment.apiKey}`);
   }
 
-  rateForAMovie(idMovie: number, rate: any): Observable<StatusCodeResponse> {
-    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/movie/${idMovie}/rating?session_id=${localStorage.getItem('session_id')}`,
-      {
-        value: rate
-      });
+  deleteRateByIdMovie(id: number): Observable<StatusCodeResponse> {
+    return this.http.delete<StatusCodeResponse>(`${environment.apiBaseUrl}/movie/${id}/rating?session_id=${localStorage.getItem('session_id')}&api_key=${environment.apiKey}`);
+  }
+
+  rateForAMovieById(id: number, value: number): Observable<StatusCodeResponse> {
+    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/movie/${id}/rating?session_id=${localStorage.getItem('session_id')}`, {
+      value: value
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${environment.tmdbToken}`
+      }
+    }
+    );
   }
 
 }

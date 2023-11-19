@@ -53,7 +53,7 @@ export class PageProfileComponent implements OnInit {
   getImgAvatar() {
     if (this.avatarPath != null) {
       return `https://image.tmdb.org/t/p/w500${this.avatarPath}`;
-    }else {
+    } else {
       return 'https://icon-library.com/images/my-profile-icon-png/my-profile-icon-png-22.jpg'
     }
   }

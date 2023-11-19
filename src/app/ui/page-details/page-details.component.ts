@@ -5,7 +5,6 @@ import { Genre } from 'src/app/models/genre.interface';
 import { Cast, MovieCreditsResponse } from 'src/app/models/movie-credits.interface';
 import { MovieDetailResponse } from 'src/app/models/movie-detail.interface';
 import { Movie } from 'src/app/models/movie-list.interface';
-import { RatedMovie } from 'src/app/models/list-ratedmovies.interface';
 import { MovieService } from 'src/app/service/movie.service';
 import { Trailer } from 'src/app/models/trailer-list.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -28,7 +27,7 @@ export class PageDetailsComponent implements OnInit {
   trailerOfMovie !: Trailer;
   cast!: Cast[];
   crew !: Cast[];
-  readonly: boolean = false;
+  valorado: boolean = false;
   value: number = 0;
 
   constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private modalService: NgbModal, private accountService: AccountService) {
@@ -53,9 +52,10 @@ export class PageDetailsComponent implements OnInit {
         this.genres = respG.genres;
       });
     });
-    this.accountService.getRatedMovies().subscribe(answ => {
-      if (answ.results.find(m => m.id == this.movieId)) {
-        this.value = answ.results.find(m => m.id == this.movieId)!.rating;
+    this.accountService.getRatedMovies().subscribe(resp => {
+      if (resp.results.find(m => m.id == this.movieId)) {
+        this.value = resp.results.find(m => m.id == this.movieId)!.rating;
+        this.valorado = true;
       }
     });
   }
@@ -103,9 +103,15 @@ export class PageDetailsComponent implements OnInit {
   }
 
   rateAMovie() {
-    this.movieService.rateForAMovie(this.movieId, this.value).subscribe();
+    this.movieService.rateForAMovieById(this.movieId, this.value).subscribe();
+    this.valorado = true;
   }
-
+  deleteRateMovie() {
+    this.movieService.deleteRateByIdMovie(this.movieId).subscribe(() => {
+      this.valorado = false;
+      this.value = 0;
+    });
+  }
 
   testDataDirector(director: String | null) {
     if (director != null)
