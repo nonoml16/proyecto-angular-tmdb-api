@@ -8,6 +8,7 @@ import { GenreResponse } from '../models/genre.interface';
 import { MovieCreditsResponse } from '../models/movie-credits.interface';
 import { TrailerListResponse } from '../models/trailer-list.interface';
 import { CreditsResponse } from '../models/credits-interface';
+import { StatusCodeResponse } from '../models/status-code.interface';
 
 const MOVIE_BASE_URL = 'movie';
 
@@ -90,4 +91,12 @@ export class MovieService {
   getCredits(id: number): Observable<CreditsResponse> {
     return this.http.get<CreditsResponse>(`${environment.apiBaseUrl}/${MOVIE_BASE_URL}/${id}/credits?api_key=${environment.apiKey}`);
   }
+
+  rateForAMovie(idMovie: number, rate: any): Observable<StatusCodeResponse> {
+    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/movie/${idMovie}/rating?session_id=${localStorage.getItem('session_id')}`,
+      {
+        value: rate
+      });
+  }
+
 }
