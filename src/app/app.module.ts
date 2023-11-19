@@ -30,6 +30,7 @@ import { PageActorDetailComponent } from './ui/page-actor-detail/page-actor-deta
 import { PageTrendingMovieComponent } from './ui/page-trending-movie/page-trending-movie.component';
 import { PageTrendingTvshowComponent } from './ui/page-trending-tvshow/page-trending-tvshow.component';
 import { PageTrendingActorsComponent } from './ui/page-trending-actors/page-trending-actors.component';
+import { MoviesFilterComponent } from './components/movies-filter/movies-filter.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { PageTrendingActorsComponent } from './ui/page-trending-actors/page-tren
     PageDetailsTvShowComponent,
     PageTrendingMovieComponent,
     PageTrendingTvshowComponent,
-    PageTrendingActorsComponent
+    PageTrendingActorsComponent,
+    MoviesFilterComponent
   ],
   imports: [
     BrowserModule,
