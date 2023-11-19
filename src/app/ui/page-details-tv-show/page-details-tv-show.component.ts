@@ -7,6 +7,7 @@ import { Trailer, TrailerListResponse } from 'src/app/models/trailer-list.interf
 import { Cast, TvShowCreditsResponse } from 'src/app/models/tv-show-credits.interface';
 import { Season, TvShowDetailResponse } from 'src/app/models/tv-show-detail.interface';
 import { TvShow } from 'src/app/models/tv-show-list.interface';
+import { AccountService } from 'src/app/service/account.service';
 import { TvShowService } from 'src/app/service/tv-show.service';
 
 @Component({
@@ -27,8 +28,10 @@ export class PageDetailsTvShowComponent implements OnInit {
   cast!: Cast[];
   crew !: Cast[];
   seasons: Season[] = [];
+  valorado: boolean = false;
+  value: number = 0;
 
-  constructor(private tvshowService: TvShowService, private sanitazer: DomSanitizer, private modalService: NgbModal) {
+  constructor(private tvshowService: TvShowService, private sanitazer: DomSanitizer, private modalService: NgbModal, private accountService: AccountService) {
     this.tvshowId = this.route.snapshot.params['id'];
   }
 
@@ -47,6 +50,12 @@ export class PageDetailsTvShowComponent implements OnInit {
       this.tvshowService.getGenres().subscribe(respG => {
         this.genres = respG.genres;
       });
+    });
+    this.accountService.getRatedTvShows().subscribe(resp => {
+      if (resp.results.find(m => m.id == this.tvshowId)) {
+        this.value = resp.results.find(m => m.id == this.tvshowId)!.rating;
+        this.valorado = true;
+      }
     });
   }
 
@@ -91,6 +100,17 @@ export class PageDetailsTvShowComponent implements OnInit {
 
   getVideoUrl(trailer: Trailer): any {
     return this.sanitazer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${trailer.key}`);
+  }
+
+  rateATvShow() {
+    this.tvshowService.rateForATvShowById(this.tvshowId, this.value).subscribe();
+    this.valorado = true;
+  }
+  deleteRateTvShow() {
+    this.tvshowService.deleteRateByIdTvShow(this.tvshowId).subscribe(() => {
+      this.valorado = false;
+      this.value = 0;
+    });
   }
 
   testDataDirector() {

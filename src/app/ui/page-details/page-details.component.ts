@@ -8,6 +8,7 @@ import { Movie } from 'src/app/models/movie-list.interface';
 import { MovieService } from 'src/app/service/movie.service';
 import { Trailer } from 'src/app/models/trailer-list.interface';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AccountService } from 'src/app/service/account.service';
 
 @Component({
   selector: 'app-page-details',
@@ -26,8 +27,10 @@ export class PageDetailsComponent implements OnInit {
   trailerOfMovie !: Trailer;
   cast!: Cast[];
   crew !: Cast[];
+  valorado: boolean = false;
+  value: number = 0;
 
-  constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private modalService: NgbModal) {
+  constructor(private movieService: MovieService, private sanitazer: DomSanitizer, private modalService: NgbModal, private accountService: AccountService) {
     this.movieId = this.route.snapshot.params['id'];
   }
 
@@ -48,6 +51,12 @@ export class PageDetailsComponent implements OnInit {
       this.movieService.getGenres().subscribe(respG => {
         this.genres = respG.genres;
       });
+    });
+    this.accountService.getRatedMovies().subscribe(resp => {
+      if (resp.results.find(m => m.id == this.movieId)) {
+        this.value = resp.results.find(m => m.id == this.movieId)!.rating;
+        this.valorado = true;
+      }
     });
   }
 
@@ -72,7 +81,6 @@ export class PageDetailsComponent implements OnInit {
   }
 
   open(idmovie: number, content: any) {
-
     this.movieService.getMovie(idmovie).subscribe(resp => {
       this.movie = resp
     });
@@ -92,6 +100,17 @@ export class PageDetailsComponent implements OnInit {
 
   getVideoUrl(trailer: Trailer): any {
     return this.sanitazer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${trailer.key}`);
+  }
+
+  rateAMovie() {
+    this.movieService.rateForAMovieById(this.movieId, this.value).subscribe();
+    this.valorado = true;
+  }
+  deleteRateMovie() {
+    this.movieService.deleteRateByIdMovie(this.movieId).subscribe(() => {
+      this.valorado = false;
+      this.value = 0;
+    });
   }
 
   testDataDirector(director: String | null) {

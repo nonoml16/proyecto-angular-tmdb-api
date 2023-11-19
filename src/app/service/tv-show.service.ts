@@ -8,6 +8,7 @@ import { GenreResponse } from '../models/genre.interface';
 import { CreditsResponse } from '../models/credits-interface';
 import { TvShowCreditsResponse } from '../models/tv-show-credits.interface';
 import { TrailerListResponse } from '../models/trailer-list.interface';
+import { StatusCodeResponse } from '../models/status-code.interface';
 
 const TV_SHOW_BASE_URL = 'tv';
 
@@ -18,19 +19,19 @@ export class TvShowService {
 
   constructor(private http: HttpClient) { }
 
-  getListAiringTday(page:number): Observable<TvShowListResponse> {
+  getListAiringTday(page: number): Observable<TvShowListResponse> {
     return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/airing_today?api_key=${environment.apiKey}&&page=${page}`);
   }
 
-  getListTopRated(page:number): Observable<TvShowListResponse> {
+  getListTopRated(page: number): Observable<TvShowListResponse> {
     return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/top_rated?api_key=${environment.apiKey}&&page=${page}`);
   }
 
-  getListOnTheAir(page:number): Observable<TvShowListResponse> {
+  getListOnTheAir(page: number): Observable<TvShowListResponse> {
     return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/on_the_air?api_key=${environment.apiKey}&&page=${page}`);
   }
 
-  getListPopular(page:number): Observable<TvShowListResponse> {
+  getListPopular(page: number): Observable<TvShowListResponse> {
     return this.http.get<TvShowListResponse>(`${environment.apiBaseUrl}/${TV_SHOW_BASE_URL}/popular?api_key=${environment.apiKey}&&page=${page}`);
   }
 
@@ -56,5 +57,21 @@ export class TvShowService {
 
   getListTvShowByIdMovie(id: number): Observable<TrailerListResponse> {
     return this.http.get<TrailerListResponse>(`${environment.apiBaseUrl}/tv/${id}/videos?api_key=${environment.apiKey}`);
+  }
+
+  deleteRateByIdTvShow(id: number): Observable<StatusCodeResponse> {
+    return this.http.delete<StatusCodeResponse>(`${environment.apiBaseUrl}/tv/${id}/rating?session_id=${localStorage.getItem('session_id')}&api_key=${environment.apiKey}`);
+  }
+
+  rateForATvShowById(id: number, value: number): Observable<StatusCodeResponse> {
+    return this.http.post<StatusCodeResponse>(`${environment.apiBaseUrl}/tv/${id}/rating?session_id=${localStorage.getItem('session_id')}`, {
+      value: value
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${environment.tmdbToken}`
+      }
+    }
+    );
   }
 }
