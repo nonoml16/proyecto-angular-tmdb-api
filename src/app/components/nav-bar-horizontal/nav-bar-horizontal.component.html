@@ -56,7 +56,7 @@
                     <button type="button" (click)="doLogin()">Log In</button>
                   </ng-template>
                 <ng-template [ngIf]="isLoggedIn">
-                  <a class="nav-link" [routerLink]="['/perfil']">
+                  <a class="nav-link" [routerLink]="['/profile']">
                     <img [src]="getImgAvatar()" alt="Profile" width="30" height="30" class="rounded-circle">
                     {{ username }}
                   </a>

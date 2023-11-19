@@ -32,6 +32,7 @@ import { PageTrendingTvshowComponent } from './ui/page-trending-tvshow/page-tren
 import { PageTrendingActorsComponent } from './ui/page-trending-actors/page-trending-actors.component';
 import { MoviesFilterComponent } from './components/movies-filter/movies-filter.component';
 import { AuthAprovedComponent } from './components/auth-aproved/auth-aproved.component';
+import { PageProfileComponent } from './ui/page-profile/page-profile.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { AuthAprovedComponent } from './components/auth-aproved/auth-aproved.com
     PageTrendingTvshowComponent,
     PageTrendingActorsComponent,
     MoviesFilterComponent,
-    AuthAprovedComponent
+    AuthAprovedComponent,
+    PageProfileComponent
   ],
   imports: [
     BrowserModule,
