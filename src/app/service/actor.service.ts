@@ -17,7 +17,7 @@ export class ActorService {
   constructor(private http: HttpClient) { }
 
   getList(page: number): Observable<ActorListResponse> {
-    return this.http.get<ActorListResponse>(`https://api.themoviedb.org/3/person/popular?api_key=c9002d3916ef1f2f6ec5ecf35bcd96bc&&page=${page}`);
+    return this.http.get<ActorListResponse>(`${environment.apiBaseUrl}/${ACTOR_BASE_URL}/popular?api_key=${environment.apiKey}&&page=${page}`);
   }
 
   getByName(name: string, page: number): Observable<ActorListResponse> {
@@ -29,10 +29,10 @@ export class ActorService {
   }
 
   getMovies(id: number): Observable<MoviePersonResponse> {
-    return this.http.get<MoviePersonResponse>(`${environment.apiBaseUrl}/person/${id}/movie_credits?api_key=${environment.apiKey}`);
+    return this.http.get<MoviePersonResponse>(`${environment.apiBaseUrl}/${ACTOR_BASE_URL}/${id}/movie_credits?api_key=${environment.apiKey}`);
   }
 
   getTvShows(id: number): Observable<TvShowsPersonResponse> {
-    return this.http.get<TvShowsPersonResponse>(`${environment.apiBaseUrl}/person/${id}/tv_credits?api_key=${environment.apiKey}`);
+    return this.http.get<TvShowsPersonResponse>(`${environment.apiBaseUrl}/${ACTOR_BASE_URL}/${id}/tv_credits?api_key=${environment.apiKey}`);
   }
 }

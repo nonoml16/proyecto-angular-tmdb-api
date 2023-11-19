@@ -51,11 +51,18 @@
             </ng-container>
         </ul>
         <div class="nav-item d-flex ms-auto">
-            <a class="nav-link" href="/tu-pagina-de-perfil">
-                User
-                <img src="https://icon-library.com/images/my-profile-icon-png/my-profile-icon-png-22.jpg" alt="Profile"
-                    width="30" height="30" class="rounded-circle">
-            </a>
+            <div>
+                <ng-container *ngIf="isLoggedIn(); else usuarioIcono">
+                  <a class="nav-link" [routerLink]="['/perfil']">
+                    User
+                    <img [src]="avatarUrl" alt="Profile" width="30" height="30" class="rounded-circle">
+                    {{ username }}
+                  </a>
+                </ng-container>
+                <ng-template #usuarioIcono>
+                  <button [routerLink]="['/approved']" (click)="doLogin()">Log In</button>
+                </ng-template>
+              </div>
         </div>
     </div>
 </nav>

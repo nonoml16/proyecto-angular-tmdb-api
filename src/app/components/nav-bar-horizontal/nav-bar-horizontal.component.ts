@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
   selector: 'app-nav-bar-horizontal',
@@ -7,8 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./nav-bar-horizontal.component.css']
 })
 export class NavBarHorizontalComponent {
+  username!: String | null;
+  avatarUrl!: String | null;
 
-  constructor(private route: ActivatedRoute) { }
+
+  constructor(private route: ActivatedRoute, private authService: AuthService) { }
 
   isMoviesRouteActive(): boolean {
     return this.route.snapshot.firstChild?.routeConfig?.path === 'movies';
@@ -24,6 +28,21 @@ export class NavBarHorizontalComponent {
 
   isTrendingRouteActive(): boolean {
     return this.route.snapshot.firstChild?.routeConfig?.path === 'trending';
+  }
+
+  doLogin() {
+    this.authService.getRequestToken().subscribe(resp => {
+      localStorage.setItem('REQUEST_TOKEN', resp.request_token);
+      
+      
+      window.location.href = `https://www.themoviedb.org/authenticate/${localStorage.getItem('REQUEST_TOKEN')}?redirect_to=http://localhost:4200/approved`;
+    });
+  }
+
+  isLoggedIn(): boolean {
+    this.avatarUrl = localStorage.getItem('AVATAR_PATH');
+    this.username = localStorage.getItem('USERNAME');
+    return (localStorage.getItem("AVATAR_PATH") == null)
   }
 
 }

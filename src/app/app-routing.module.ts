@@ -17,10 +17,12 @@ import { PageActorDetailComponent } from './ui/page-actor-detail/page-actor-deta
 import { PageTrendingTvshowComponent } from './ui/page-trending-tvshow/page-trending-tvshow.component';
 import { PageTrendingMovieComponent } from './ui/page-trending-movie/page-trending-movie.component';
 import { PageTrendingActorsComponent } from './ui/page-trending-actors/page-trending-actors.component';
+import { AuthAprovedComponent } from './components/auth-aproved/auth-aproved.component';
 
 const routes: Routes = [
   { path: 'home', component: PageHomeComponent },
   { path: '', pathMatch: 'full', redirectTo: '/home' },
+  { path: 'approved', component: AuthAprovedComponent },
   {
     path: 'movies',
     children: [
